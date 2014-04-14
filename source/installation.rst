@@ -62,7 +62,7 @@ do this in the ``.htaccess`` file by adding a line ``php_flag magic_quotes_gpc o
 
 Many servers are configured to not allow changing settings using ``.htaccess`` and the install will fail.
 
-.. tip:: Your hosting provider may allow the use of a custom ``php.ini`` to add this setting as ``magic_quotes_gpc off``. If using such a custom ``php.ini`` file produces a blank screen, you should
+.. tip:: Your hosting provider may allow the use of a custom :file:`php.ini` to add this setting as ``magic_quotes_gpc off``. If using such a custom :file:`php.ini` file produces a blank screen, you should
          contact your hosting provider to inquire how to disable the magic quotes feature.
 
 Running the install routine
@@ -82,7 +82,7 @@ Post install steps
 A number of post installation steps are required and advised for you to do. These will help secure your Wolf CMS installation.
 
 * Delete the ``/install`` and ``/docs`` directories.
-* Remove all of the write permissions for the ``config.php`` file. [#f2]_
+* Remove all of the write permissions for the :file:`config.php` file. [#f2]_
 * Run the security check to determine any other steps you might need to take.
 
 You can now login with the administrator's username and **generated password** which was displayed on the post installation confirmation page.
@@ -99,4 +99,4 @@ You can now login with the administrator's username and **generated password** w
     
 .. [#f2]
 
-    Removing the write permissions from ``config.php`` is a mandatory security measure & Wolf CMS will refuse to execute until you do this.
+    Removing the write permissions from :file:`config.php` is a mandatory security measure & Wolf CMS will refuse to execute until you do this.
