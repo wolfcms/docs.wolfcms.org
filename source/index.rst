@@ -18,8 +18,6 @@ Contents:
     userguide
     faq
     contributing
-    copyright
-    credits
     glossary
 
 Indices and tables
