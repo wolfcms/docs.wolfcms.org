@@ -22,7 +22,7 @@ While the system is tested on the Apache HTTP server, Wolf CMS is known to run o
 PHP
 ---
 
-* You need PHP 5.3.0 or newer, with ``session`` support and magic_quotes_gpc turned off.
+* You need PHP 5.3.0 or newer, with ``session`` support and ``magic_quotes_gpc`` turned off.
 
 * You need native PDO support.
 
