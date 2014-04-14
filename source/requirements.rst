@@ -17,7 +17,7 @@ While the system is tested on the Apache HTTP server, Wolf CMS is known to run o
 * Nginx
 * Hiawatha
 
-.. note:: If you're running Wolf CMS on a different HTTP server successfully, please let us know at `forum.wolfcms.org <http://forum.wolfcms.org/`_
+.. note:: If you're running Wolf CMS on a different HTTP server successfully, please let us know at `forum.wolfcms.org <http://forum.wolfcms.org/>`_
 
 PHP
 ---
