@@ -7,7 +7,7 @@ Web server
 ----------
 
 To run Wolf CMS, you'll need a web server that supports PHP (such as Apache) to host Wolf CMS's files. If
-you want to use clean URLs (no "?" in the URL), then you will also require support for some sort of URL
+you want to use clean URLs (e.g. no "?" in the URL), then you will also require support for some sort of URL
 rewriting mechanism in your HTTP server.
 
 While the system is tested on the Apache HTTP server, Wolf CMS is known to run on these HTTP servers as well:
