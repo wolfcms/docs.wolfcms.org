@@ -73,9 +73,16 @@ From Wikipedia, the free encyclopedia
 
     ISO
       International Standards Organisation
+      
+    Linux
+      Linux is a Unix-like and POSIX-compliant computer operating system assembled under the model of free and open source software
+      development and distribution. The defining component of Linux is the Linux kernel, an operating system kernel first released
+      on 5 October 1991 by Linus Torvalds.
+    
+      .. seealso:: <http://en.wikipedia.org/wiki/Linux>
 
     Mac
-       Apple Macintosh is line of personal computers is designed, developed, manufactured, and marketed by Apple Computer.	
+      Apple Macintosh is line of personal computers is designed, developed, manufactured, and marketed by Apple Computer.	
 
       .. seealso:: <http://www.wikipedia.org/wiki/Mac>
 
@@ -162,6 +169,17 @@ From Wikipedia, the free encyclopedia
       A computer (program) that is responsible for accepting HTTP requests from clients and serving them Web pages.	
 
       .. seealso:: <http://www.wikipedia.org/wiki/Webserver>
+      
+    Windows
+      Microsoft Windows is a series of graphical interface operating systems developed, marketed, and sold by Microsoft.
+
+      Microsoft introduced an operating environment named Windows on November 20, 1985 as a graphical operating system shell for MS-DOS in
+      response to the growing interest in graphical user interfaces (GUIs).
+      
+      As of October 2013, the most recent versions of Windows for personal computers, smartphones, server computers and embedded devices are
+      respectively Windows 8.1, Windows Phone 8, Windows Server 2012 R2 and Windows Embedded 8.
+    
+      .. seealso:: <http://en.wikipedia.org/wiki/Windows>
 
     ZIP
       a popular data compression and archival format.	

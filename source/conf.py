@@ -44,7 +44,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'Wolf CMS'
-copyright = u'2014, Wolf CMS team'
+copyright = u'2009-2014, The Wolf CMS team'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -227,7 +227,7 @@ latex_documents = [
 # (source start file, name, description, authors, manual section).
 man_pages = [
     ('index', 'wolfcms', u'Wolf CMS Documentation',
-     [u'Wolf CMS team'], 1)
+     [u'The Wolf CMS team'], 1)
 ]
 
 # If true, show URL addresses after external links.
@@ -241,7 +241,7 @@ man_pages = [
 #  dir menu entry, description, category)
 texinfo_documents = [
   ('index', 'WolfCMS', u'Wolf CMS Documentation',
-   u'Wolf CMS team', 'WolfCMS', 'One line description of project.',
+   u'The Wolf CMS team', 'WolfCMS', 'One line description of project.',
    'Miscellaneous'),
 ]
 
