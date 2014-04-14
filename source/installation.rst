@@ -62,16 +62,14 @@ do this in the ``.htaccess`` file by adding a line ``php_flag magic_quotes_gpc o
 
 Many servers are configured to not allow changing settings using ``.htaccess`` and the install will fail.
 
-.. tip:: Your hosting provider may allow the use of a custom :file:`php.ini` to add this setting as ``magic_quotes_gpc off``. If using such a custom :file:`php.ini` file produces a blank screen, you should
-         contact your hosting provider to inquire how to disable the magic quotes feature.
+.. tip:: Your hosting provider may allow the use of a custom :file:`php.ini` to add this setting as ``magic_quotes_gpc off``. If using such a custom :file:`php.ini` file produces a blank screen, you should contact your hosting provider to inquire how to disable the magic quotes feature.
 
 Running the install routine
 ---------------------------
 
 After you have copied the files onto your webserver, you will need to run the installation routine.
 
-1. Open your browser and go to the root of your Wolf CMS installation.
-    * An automatic redirect should take you to the ``/wolf/install/`` section of your new site.
+1. Open your browser and go to the root of your Wolf CMS installation. An automatic redirect should take you to the ``/wolf/install/`` section of your new site.
 2. Answer all the questions after reviewing them carefully.
 
 After finishing the installation, you will get a message that includes a link to the admin section of your new site. That page also shows you the administrator's username and **generated password**.

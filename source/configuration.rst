@@ -37,8 +37,6 @@ Basic settings
     Contains the complete connection string required for Wolf CMS to connect to it's
     database. This string is generated based on the selections you made during the
     installation phase.
-
-    .. seealso:: :ref:`faq1_40`
     
 .. config:option:: define('DB_USER', ..)
 
@@ -73,8 +71,8 @@ Server connectivity settings
     :type: string
     :default: ``generated``
 
-    The full http:// :term:`URL` to your Wolf CMS installation. This values is used througout
-    the software and it's plugins to reference various :term:`URL`s. Only change this value
+    The full :term:`HTTP` :term:`URL` to your Wolf CMS installation. This values is used througout
+    the software and it's plugins to reference various :term:`URLs`. Only change this value
     if you are absolutely sure what you're doing.
     
 .. config:option:: define('USE_MOD_REWRITE', ..)
@@ -94,7 +92,7 @@ Server connectivity settings
     :type: string
     :default: ``.html``
 
-    This option allows you to add a default suffix to your page :term:`URL`s to, for example,
+    This option allows you to add a default suffix to your page :term:`URLs` to, for example,
     simulate static pages.
 
 
@@ -164,8 +162,8 @@ Generic settings
     The number of seconds before the check for updates times out in case of problems.
 
 
-Security
---------
+Security settings
+-----------------
 
 .. config:option:: define('USE_HTTPS', ..)
 
@@ -173,14 +171,14 @@ Security
     :default: false
 
     Whether or not to use :term:`HTTPS` for the administration section of your website. Before
-    enabling this, please make sure you have a working :term:`HTTP`+:term:`SSL` installation.
+    enabling this, please make sure you have a working :term:`HTTP` + :term:`SSL` installation.
     
 .. config:option:: define('COOKIE_HTTP_ONLY', ..)
 
     :type: boolean
     :default: false
 
-    Whether or not to use a so-called :term:`HttpOnly`[#f1] authentication cookie instead of a
+    Whether or not to use a so-called :term:`HttpOnly` [#f1] authentication cookie instead of a
     unprotected one. This *requests* browsers to make the cookie only available through HTTP, so
     not javascript for example. There is no guarantee the browser honors the request, but
     :term:`OWASP` recommends using it. Defaults to false for backwards compatibility.
@@ -228,8 +226,8 @@ Security
                  We **strongly** advise not setting this value too high.
 
 
-Debug & Development
--------------------
+Debug & Development settings
+----------------------------
 
 .. warning::
 
