@@ -15,6 +15,7 @@ Contents:
     requirements
     installation
     configuration
+	functions
     userguide
     faq
     contributing
