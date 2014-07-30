@@ -11,7 +11,7 @@ author()
 
 Wolf saves the id of the user who creates a page, and the name for that id can be displayed using author(). This is commonly given in the page's “meta”, for example: 
 
-.. code-block:: bash
+.. code-block:: php
 
 	<p class="meta">Posted by <?php echo $this->author(); ?></p>
 	
@@ -22,7 +22,7 @@ authorId()
 
 Wolf saves the unique id number of the user who creates a page, and that id number can be accessed using authorId(). This might be especially useful if two "authors" registered on the system have the same name. For example:
 
-.. code-block:: bash
+.. code-block:: php
 
 	<?php if ($this->authorId() == '1') {
 		// do things
@@ -40,13 +40,15 @@ breadcrumb()
 
 When a page is created in Wolf, the “Breadcrumb” value is automatically completed with the same values as the page title itself. This is the page reference used automatically by the breadcrumbs function, but it can also be used on its own:
 
-.. code-block:: bash
+.. code-block:: php
 
 	<?php echo $this->breadcrumb(); ?>
 
-The "Breadcrumb" field is found under the "Metadata" tab next to the "Page Title" tab, and the value can be edited.([1_]) It may be, for example, that a very long page title could be abbreviated for use as a "breadcrumb". Once edited, and different from the Page Title, its value will remain unchanged even if the Page Title itself is changed.
+The "Breadcrumb" field is found under the "Metadata" tab next to the "Page Title" tab, and the value can be edited.[#f1]_ It may be, for example, that a very long page title could be abbreviated for use as a "breadcrumb". Once edited, and different from the Page Title, its value will remain unchanged even if the Page Title itself is changed.
 
-.. [1] It can be used, then, as a secondary “page title” field.
+.. [#f1] 
+	
+	It can be used, then, as a secondary “page title” field.
 
 breadcrumbs()
 -------------
