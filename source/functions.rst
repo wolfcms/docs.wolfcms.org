@@ -53,7 +53,7 @@ The "Breadcrumb" field is found under the "Metadata" tab next to the "Page Title
 breadcrumbs()
 -------------
 
- "breadcrumbs" can be created in Wolf by adding this code to a Layout:
+"breadcrumbs" can be created in Wolf by adding this code to a Layout:
 
 .. code-block:: php
 	
@@ -77,4 +77,90 @@ Any character may be used this way.
 
 	<?php echo $this->breadcrumbs('\\'); ?> 
 
+children()
+----------
 
+*children()* returns an array of values relating to the child pages of the current page. [#f2]_ Normally, then, it is not used on its own, but to give some information about published subpages to a given page.
+
+The array produced by children() requires a foreach loop to present usable information. The most simple listing of subpage titles, then, could look like this:
+
+.. code-block:: php
+
+	<h3>List of pages</h3>
+	 
+	<ul>
+		<?php  foreach ($this->children() as $child) : ?>
+		<li><?php echo $child->title(); ?></li>
+		<?php endforeach; ?>
+	</ul>
+
+ In situations when in return only a single result is desired, the foreach loop should be ditched in favor of limit ⇒ 1 argument (see Arguments below in this page), otherwise it will not work and a fatal error is returned instead. The example below returns the last published page from Articles as the parent page.
+
+.. code-block:: php
+
+	<?php 
+	  $page_article = $this->find('/articles/');
+	  $last_article = $page_article->children(array('limit'=>1, 'order'=>'page.created_on DESC')); 
+	?>
+		<h2 class="post_title"><?php echo $last_article->link(); ?></h2>
+		<?php echo $last_article->content(); ?>
+		<?php if ($last_article->hasContent('extended')) echo $last_article->link('Continue Reading&#8230;'); ?>
+
+For further information on how to use *children()* in constructing menus, see how to Display a list of subpages. 
+
+Conditions
+++++++++++
+
+Including hidden pages
+``````````````````````
+
+By default, children() only returns "published" pages. [#f2]_ In the following line of code, the final 'true' tells Wolf to include hidden pages as well:
+
+.. code-block: php
+
+	$this->children(null,array(),true)
+
+
+Additional arguments
+````````````````````
+
+Four more arguments can be given to *children()* to further define the subpages it returns: 
+
+* where - sets a condition
+* order - determines the sort order (by field name in page table [see note below], either ASC ascending, or DESC descending)
+* offset - where in the list of subpages to begin the list
+* limit - how many pages to return
+
+A note on "order"
+`````````````````
+
+Any of the fields in the page table can be used to sort your "children" pages. In first example, below, you could have:
+
+*'order' => 'title ASC'*
+
+to arrange the order by the page Title in A-Z order, or
+
+*'order' => 'slug DESC'*
+
+to order the list by “slug” value in Z-A order. That should give you the idea! While any value in the “page” table could be used here, the main options would include:
+
+* title
+* slug
+* breadcrumb
+* created_on
+* published_on
+* updated_on
+* created_by_id
+* updated_by_id
+
+The default is *position*, which is set automatically when the drag-drop page re-ordering is used.
+
+	
+	
+.. [#f2]
+
+	Consult the documentation on $this-> to find out what the “current” page is in different situations.
+	
+.. [#f3]
+
+	Consult the documentation on creating a page for a full list of page-status definitions.
