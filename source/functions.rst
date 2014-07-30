@@ -1,4 +1,4 @@
-.._functions:
+.. _functions:
 
 
 Functions
@@ -114,7 +114,7 @@ Conditions
 Including hidden pages
 ``````````````````````
 
-By default, children() only returns "published" pages. [#f2]_ In the following line of code, the final 'true' tells Wolf to include hidden pages as well:
+By default, children() only returns "published" pages. [#f3]_ In the following line of code, the final 'true' tells Wolf to include hidden pages as well:
 
 .. code-block: php
 
