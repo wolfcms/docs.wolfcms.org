@@ -47,3 +47,32 @@ When a page is created in Wolf, the “Breadcrumb” value is automatically comp
 The "Breadcrumb" field is found under the "Metadata" tab next to the "Page Title" tab, and the value can be edited.([1_]) It may be, for example, that a very long page title could be abbreviated for use as a "breadcrumb". Once edited, and different from the Page Title, its value will remain unchanged even if the Page Title itself is changed.
 
 .. [1] It can be used, then, as a secondary “page title” field.
+
+breadcrumbs()
+-------------
+
+ "breadcrumbs" can be created in Wolf by adding this code to a Layout:
+
+.. code-block:: php
+	
+	<?php echo $this->breadcrumbs(); ?>
+
+By default, it produces output of this kind:
+
+*Home > Music > Baroque > Bach*
+
+In order to change the value of the separator, include it as a parameter. If for example, you wish to use a forward slash:
+
+.. code-block:: php
+
+	<?php echo $this->breadcrumbs('/'); ?>
+
+Any character may be used this way.
+
+.. note::   if you wish to use a backslash, it must be given twice, since it is a PHP escape character: 
+
+.. code-block:: php
+
+	<?php echo $this->breadcrumbs('\\'); ?> 
+
+
