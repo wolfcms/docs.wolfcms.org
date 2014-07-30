@@ -44,7 +44,7 @@ When a page is created in Wolf, the “Breadcrumb” value is automatically comp
 
 	<?php echo $this->breadcrumb(); ?>
 
-The "Breadcrumb" field is found under the "Metadata" tab next to the "Page Title" tab, and the value can be edited.[#f1]_ It may be, for example, that a very long page title could be abbreviated for use as a "breadcrumb". Once edited, and different from the Page Title, its value will remain unchanged even if the Page Title itself is changed.
+The "Breadcrumb" field is found under the "Metadata" tab next to the "Page Title" tab, and the value can be edited. [#f1]_ It may be, for example, that a very long page title could be abbreviated for use as a "breadcrumb". Once edited, and different from the Page Title, its value will remain unchanged even if the Page Title itself is changed.
 
 .. [#f1] 
 	
