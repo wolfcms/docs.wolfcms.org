@@ -77,7 +77,7 @@ After finishing the installation, you will get a message that includes a link to
 Post install steps
 ------------------
 
-A number of post installation steps are required and advised for you to do. These will help secure your Wolf CMS installation.
+A number of post installation steps are required and/or advised for you to do. These will help secure your Wolf CMS installation.
 
 * Delete the ``/install`` and ``/docs`` directories.
 * Remove all of the write permissions for the :file:`config.php` file. [#f2]_
@@ -94,7 +94,34 @@ You can now login with the administrator's username and **generated password** w
 .. [#f1]
 
     If you are using mySQL for your db, phpMyAdmin is a good tool for this.
-    
+
 .. [#f2]
 
     Removing the write permissions from :file:`config.php` is a mandatory security measure & Wolf CMS will refuse to execute until you do this.
+
+
+Optional post-install configuration
+===================================
+
+Renaming admin area url
+-----------------------
+
+The default path to the administration backend for Wolf CMS is http://www.example.com/admin/
+however, that can be changed with a minor change in the configuration file.
+
+For our example purposes, we will change our path from `/admin/` to `/system/`.
+
+
+1. Temporarily make your __config.php__ file writable and open it.
+2. Find and edit the following entry:
+.. code-block::php
+
+  define('ADMIN_DIR', 'admin');</code>
+
+3. Now change the value `admin` to `system`.
+4. Save the changes and remove the write permissions again.
+
+Now your administration area will be available at http://www.example.com/system/
+
+.. warning::
+Do not rename the `.../wolf/admin` folder. The administration area uses a *virtual* url path. This is configured through the `ADMIN_DIR` setting.
