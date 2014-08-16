@@ -25,7 +25,7 @@ lives at the root of the site, i.e. ``http://www.example.com``.
 Since Lighttpd does not have an equivalent of Apache's RewriteBase command, you
 will have to manually alter the paths below to conform to your Wolf CMS root.
 
-.. code-block:
+.. code-block::
 
     #
     # Wolf CMS mod_rewrite rules for lighttpd
@@ -58,7 +58,7 @@ If you are using Wolf CMS 0.7.x, the location of some of the pages has changed.
 You will need to use the following instead.  Since this uses ''url.rewrite-if-not-file'',
 you will need at least version 1.4.24 of lighttpd.
 
-.. code-block:
+.. code-block::
 
     url.rewrite-once = (
 
@@ -85,7 +85,7 @@ will have to manually alter the paths below to conform to your Wolf CMS root.
 You will need an UrlToolkit similar to this where ``site`` is the folder in the
 web root where Wolf CMS is unpacked.
 
-.. code-block:
+.. code-block::
 
     UrlToolkit {
         ToolkitID = wolfcms
@@ -116,9 +116,9 @@ Instead, you need to create a file named :file:`web.config` and save it to the
 root of the website. In this file you need to add the rewrite rules. Here's what
 needs to be in this :file:`web.config` file.
 
-.. note: For WolfCMS 0.7+
+.. note:: For WolfCMS 0.7+
 
-.. code-block:xml
+.. code-block::xml
 
     <?xml version="1.0" encoding="UTF-8"?>
     <configuration>
@@ -146,18 +146,18 @@ Nginx server directives
 
 Put the following code in your server block:
 
-.. code-block
+.. code-block::
 
     try_files $uri $uri/ /index.php?WOLFPAGE=$uri&$args;
 
 You may also have to set the URL suffix to be blank ``define('URL_SUFFIX', '');`` in :file:`config.php`
 
-.. note: the code above assumes that your Wolf CMS installation lives at the folder defined by the root directive. For more information about Nginx rewriting, visit http://wiki.nginx.org/NginxHttpCoreModule#try_files.
+.. note:: the code above assumes that your Wolf CMS installation lives at the folder defined by the root directive. For more information about Nginx rewriting, visit http://wiki.nginx.org/NginxHttpCoreModule#try_files.
 
 Zeus server
 -----------
 
-.. code-block
+.. code-block::
 
     map path into SCRATCH:path from %{URL}
     look for file at %{SCRATCH:path}
