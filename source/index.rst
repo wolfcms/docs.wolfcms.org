@@ -15,6 +15,7 @@ Contents:
     requirements
     installation
     configuration
+    development
     functions
     userguide
     faq
@@ -27,4 +28,3 @@ Indices and tables
 * :ref:`genindex`
 * :ref:`modindex`
 * :ref:`search`
-
