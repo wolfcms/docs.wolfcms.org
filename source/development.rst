@@ -43,15 +43,15 @@ generate events yourself.
 As you can see, the code to generate an event is fairly simple. The first
 argument, ``my_plugin_event``, is the event's name. The second argument is a
 variable that is passed to the handling function. This variable can contain just
- about anything you want, from a simple string to an array of complex objects.
+about anything you want, from a simple string to an array of complex objects.
 
 Using Observers to customize Page form
 ``````````````````````````````````````
 
 Observer events in the Page editing form allow you to include custom inputs or
 dialogs to save data that is not part of the page model. The following diagram
- gives you an indication of which event you should use and where it would be
- applied within the form.
+gives you an indication of which event you should use and where it would be
+applied within the form.
 
 .. note:: TODO - Add diagram
 
