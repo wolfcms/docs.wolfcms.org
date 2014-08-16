@@ -87,7 +87,7 @@ You can now login with the administrator's username and **generated password** w
 
 .. warning:: You should **always** change your administrator's password to something private and secure!
 
-.. tip:: You may optionally also wish to change the location of your admin section to further enhance the security of your new Wolf CMS website.
+.. tip:: You may optionally also wish to change the location of your admin section to further enhance the security of your new Wolf CMS website. Please see the optional post-install configuration section below.
 
 .. rubric:: Footnotes
 
@@ -101,10 +101,10 @@ You can now login with the administrator's username and **generated password** w
 
 
 Optional post-install configuration
-===================================
+-----------------------------------
 
 Renaming admin area url
------------------------
+```````````````````````
 
 The default path to the administration backend for Wolf CMS is http://www.example.com/admin/
 however, that can be changed with a minor change in the configuration file.
@@ -112,16 +112,17 @@ however, that can be changed with a minor change in the configuration file.
 For our example purposes, we will change our path from `/admin/` to `/system/`.
 
 
-1. Temporarily make your __config.php__ file writable and open it.
+1. Temporarily make your :file:`config.php` file writable and open it.
 2. Find and edit the following entry:
+
 .. code-block::php
 
   define('ADMIN_DIR', 'admin');</code>
 
-3. Now change the value `admin` to `system`.
+3. Now change the value ``admin`` to ``system``.
 4. Save the changes and remove the write permissions again.
 
 Now your administration area will be available at http://www.example.com/system/
 
 .. warning::
-Do not rename the `.../wolf/admin` folder. The administration area uses a *virtual* url path. This is configured through the `ADMIN_DIR` setting.
+Do not rename the ``.../wolf/admin`` folder. The administration area uses a **virtual** url path. This is configured through the ``ADMIN_DIR`` setting.
