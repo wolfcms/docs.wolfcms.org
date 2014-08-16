@@ -26,6 +26,38 @@ value for some reason.
     the \*nix end of line character (``\n``) in your text editor before
     saving a modified :file:`config.php`.
 
+Using clean URLs
+----------------
+
+The default installation of Wolf CMS generates a question mark in the URLs it
+generates. This is for compatibility purposes, so Wolf CMS will run on almost
+any HTTP server by default.
+
+However, most people (and search engines) don't really like this question mark.
+You can disable/remove the question mark after you installed Wolf CMS.
+
+By default, Wolf CMS supports Apache. Other HTTP servers are supported based on
+user input.
+
+.. important::
+
+You must carry out **both** the "General actions" **as well as** the additional
+instructions for your specific web server (Apache, Lighttpd, Nginx, etc.).
+
+General actions
+```````````````
+
+The following actions should always be executed in order for Wolf CMS to use
+clean urls.
+
+1. Temporarily add write permissions to the :file:`config.php` file and edit it.
+2. Change the value of the ``USE_MOD_REWRITE`` setting to ``true``.
+3. Save the file and remove the write permissions again.
+4. Apply the directions for your specific HTTP server. See :ref:`rewrite`.
+
+After applying the directions, test out the change by going to the root of your
+website. You should no longer see the question mark.
+
 Basic settings
 --------------
 
@@ -37,7 +69,7 @@ Basic settings
     Contains the complete connection string required for Wolf CMS to connect to it's
     database. This string is generated based on the selections you made during the
     installation phase.
-    
+
 .. config:option:: define('DB_USER', ..)
 
     :type: string
@@ -53,7 +85,7 @@ Basic settings
 
     The username required to connect to the database. This string is generated based on
     the selections you made during the installation phase.
-    
+
 .. config:option:: define('TABLE_PREFIX', ..)
 
     :type: string
@@ -74,7 +106,7 @@ Server connectivity settings
     The full :term:`HTTP` :term:`URL` to your Wolf CMS installation. This values is used througout
     the software and it's plugins to reference various :term:`URLs`. Only change this value
     if you are absolutely sure what you're doing.
-    
+
 .. config:option:: define('USE_MOD_REWRITE', ..)
 
     :type: boolean
@@ -83,10 +115,10 @@ Server connectivity settings
     Change this setting to enable the use of mod_rewrite. When set to ``true``, Wolf CMS tries
     to remove the "?" in the :term:`URL`. For this to success, a correctly configured set of
     rewrite rules will have to be configured.
-    
+
     Additionally, to enable mod_rewrite, you must also change the name of :file:`_.htaccess` in
     your root directory to :file:`.htaccess`.
-    
+
 .. config:option:: define('URL_SUFFIX', ..)
 
     :type: string
@@ -114,7 +146,7 @@ Generic settings
     :default: ``generated``
 
     Sets in which timezone your installation lives.
-    
+
     For more information on the available timezones, see http://php.net/timezones
 
 .. config:option:: define('USE_POORMANSCRON', ..)
@@ -172,7 +204,7 @@ Security settings
 
     Whether or not to use :term:`HTTPS` for the administration section of your website. Before
     enabling this, please make sure you have a working :term:`HTTP` + :term:`SSL` installation.
-    
+
 .. config:option:: define('COOKIE_HTTP_ONLY', ..)
 
     :type: boolean
@@ -182,7 +214,7 @@ Security settings
     unprotected one. This *requests* browsers to make the cookie only available through HTTP, so
     not javascript for example. There is no guarantee the browser honors the request, but
     :term:`OWASP` recommends using it. Defaults to false for backwards compatibility.
-    
+
     .. note:: This option will default to *true* in future releases.
 
 .. config:option:: define('DELAY_ON_INVALID_LOGIN', ..)
@@ -217,12 +249,12 @@ Security settings
     The amount of time in seconds before a security token, otherwise known as an :term:`CSRF token`,
     is no longer deemed valid. If a user tries to undertake an action, like saving a page, after
     the token has expired, the system will display an ``Invalid CSRF token..`` message.
-    
+
     Simply re-attemting the same action will allow the user to continue.
-    
+
     .. warning:: The :term:`CSRF token` is considered a very important feature to help protect against
                  hackers stealing a user's session information and abusing that account.
-                 
+
                  We **strongly** advise not setting this value too high.
 
 
