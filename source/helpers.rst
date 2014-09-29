@@ -52,8 +52,8 @@ Helpers currently supplied with Wolf CMS
 
 .. _validate:
 
-Validate.php helper
--------------------
+Validate
+--------
 
 Validate helper is for validating fields. In this example it is used to check for a valid email address:
 
