@@ -17,6 +17,7 @@ Contents:
     configuration
     development
     functions
+    helpers
     userguide
     faq
     contributing
