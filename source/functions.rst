@@ -94,7 +94,7 @@ The array produced by children() requires a foreach loop to present usable infor
 		<?php endforeach; ?>
 	</ul>
 
- In situations when in return only a single result is desired, the foreach loop should be ditched in favor of limit ⇒ 1 argument (see Arguments below in this page), otherwise it will not work and a fatal error is returned instead. The example below returns the last published page from Articles as the parent page.
+In situations when in return only a single result is desired, the foreach loop should be ditched in favor of limit ⇒ 1 argument (see Arguments below in this page), otherwise it will not work and a fatal error is returned instead. The example below returns the last published page from Articles as the parent page.
 
 .. code-block:: php
 
@@ -116,7 +116,7 @@ Including hidden pages
 
 By default, children() only returns "published" pages. [#f3]_ In the following line of code, the final 'true' tells Wolf to include hidden pages as well:
 
-.. code-block: php
+.. code-block:: php
 
 	$this->children(null,array(),true)
 
@@ -172,13 +172,13 @@ The childrenCount() function returns a count of how many child pages belong to t
 
 childrenCount() can be useful, then, for determining when to include navigation, for example: 
 
-.. code-block: php
+.. code-block:: php
 
 	<?php if ($this->childrenCount() > 0) {
-	// if count is > 0, there are child pages, so do stuff
-	} else {
-	// no child pages, so do something else
-	}
+			// if count is > 0, there are child pages, so do stuff
+		} else {
+			// no child pages, so do something else
+		}
 	?>
 
 It takes the same parameters as the children() function; see the above for details. 
@@ -190,7 +190,7 @@ As its name suggests, the content() function returns the content of pages create
 
 In order to display the body, put this code at the appropriate place in your layout:
 
-.. code-block: php
+.. code-block:: php
 
 	<?php echo $this->content(); ?>
 
@@ -198,18 +198,18 @@ Other content parts (page-parts) can be created by clicking the green "+" icon a
 
 If you need to display one of these "custom" parts, like the sidebar tab in the Home Page graphic above (circled in blue), just add it to the parameter: 
 
-.. code-block: php
+.. code-block:: php
 
 	<?php echo $this->content('sidebar'); ?>
 
-.. note: Note: if you use <?php echo $this->content(); ?> in page content, it will create an infinite loop: so don’t do it! In other words, only use that code for the page body tab in a Layout, not in a Page.)
+.. note:: Note: if you use <?php echo $this->content(); ?> in page content, it will create an infinite loop: so don’t do it! In other words, only use that code for the page body tab in a Layout, not in a Page.)
 
 "Inheriting" content
 ++++++++++++++++++++
 
 In order for the “part” to be inherited by "child" pages (and "child-of-child" pages, etc.), use the true parameter: 
 
-.. code-block: php
+.. code-block:: php
 
 	<?php $this->content('sidebar', true); ?>
 
@@ -220,7 +220,59 @@ Displaying the content of one page on a different page
 
 If you want to call the content from a some page onto a different page, you must use the find() function in conjunction with content(). For example, to display the content of the default “About us” page on any other page, use this code:
 
-.. code-block: php
+.. code-block:: php
 
 	<?php echo $this->find('about_us')->content(); ?>
+
+date()
+------
+
+To display the date a page was created, use:
+
+.. code-block:: php
+
+	<?php echo $this->date(); ?>
+	
+If you want to change the format of the date, you can pass it as the first parameter of the method like this:
+
+.. code-block:: php
+
+	<?php echo $this->date('%A, %e %B %Y'); ?>
+	
+For more information about the date format, check the PHP manual for *strftime* http://php.net/strftime
+
+.. note:: On Windows, and rarely in other settings, the use of %e may prevent any date appearing! In this case, use %d in its place. (See PHP Bugs for more information, the date howto for a work-around.) 
+
+Values
+++++++
+
+The default date returned is the page’s creation date. The dates which can be displayed are:
+
+* created — (default) which returns the date the page was initially stored in the database, no matter what "Status" it had;
+* published — which returns the date the page was first saved with the “Status” set to "Published"; and
+* updated — which returns the most recent date on which that page was altered (this can include re-ordering)
+
+Example
++++++++
+
+For example, if you want to display the last updated time of this page, use this: 
+
+.. code-block:: php
+
+	<?php echo $this->date('%a, %e %b %Y', 'updated'); ?>
+	
+How to translate every date in your layout
+++++++++++++++++++++++++++++++++++++++++++
+
+Set the locale to your language with the *setlocale* PHP function: 
+
+.. code-block:: php
+
+	<?php setlocale(LC_ALL, 'fr_CA.utf8'); ?>
+	
+For more information about this function, consult the PHP manual on *setlocale*  http://php.net/setlocale
+
+
+
+
 
