@@ -164,3 +164,63 @@ The default is *position*, which is set automatically when the drag-drop page re
 .. [#f3]
 
 	Consult the documentation on creating a page for a full list of page-status definitions.
+
+childrenCount()
+---------------
+
+The childrenCount() function returns a count of how many child pages belong to the current page. A simple echo $this->childrenCount(); will return the number of “published” pages to the current page.
+
+childrenCount() can be useful, then, for determining when to include navigation, for example: 
+
+.. code-block: php
+
+	<?php if ($this->childrenCount() > 0) {
+	// if count is > 0, there are child pages, so do stuff
+	} else {
+	// no child pages, so do something else
+	}
+	?>
+
+It takes the same parameters as the children() function; see the above for details. 
+
+content()
+---------
+
+As its name suggests, the content() function returns the content of pages created in Wolf. More specifically, it returns the content of the page-part given as a parameter; if no parameter is given, then it defaults to the body page-part, circled in red in this graphic: 
+
+In order to display the body, put this code at the appropriate place in your layout:
+
+.. code-block: php
+
+	<?php echo $this->content(); ?>
+
+Other content parts (page-parts) can be created by clicking the green "+" icon above the upper-right corner of the page editing box. (The red "-" icon deletes the active part/tab, so be careful!)
+
+If you need to display one of these "custom" parts, like the sidebar tab in the Home Page graphic above (circled in blue), just add it to the parameter: 
+
+.. code-block: php
+
+	<?php echo $this->content('sidebar'); ?>
+
+.. note: Note: if you use <?php echo $this->content(); ?> in page content, it will create an infinite loop: so don’t do it! In other words, only use that code for the page body tab in a Layout, not in a Page.)
+
+"Inheriting" content
+++++++++++++++++++++
+
+In order for the “part” to be inherited by "child" pages (and "child-of-child" pages, etc.), use the true parameter: 
+
+.. code-block: php
+
+	<?php $this->content('sidebar', true); ?>
+
+.. note: If the current page has its own equivalent "sidebar" part, then that will prevent the “inheritance” from the parent page from taking place. 
+
+Displaying the content of one page on a different page
+++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+If you want to call the content from a some page onto a different page, you must use the find() function in conjunction with content(). For example, to display the content of the default “About us” page on any other page, use this code:
+
+.. code-block: php
+
+	<?php echo $this->find('about_us')->content(); ?>
+
