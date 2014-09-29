@@ -17,26 +17,34 @@ You can call more than one helper at a time by listing them as parameters:
 
 .. code-block:: php
 
-<?php use_helper('Email', 'Pagination', 'Zip'); ?>
+  <?php use_helper('Email', 'Pagination', 'Zip'); ?>
 
 The functionality provided by the helper will only be available on the page(s) where it is specifically called by this code.
 
 Helpers currently supplied with Wolf CMS
 ----------------------------------------
 
-====        ===========
-Name       	Description 
-====        ===========
-BigInteger 	Arbitrary precision integer arithmetic library; adapted from phphseclib. 
-Email     	Simple Email library that permits email to be sent using Mail, Sendmail, or SMTP. 
-I18n 	      Simple internationalisation library used by Wolf CMS core for translations. 
-Hash      	Keyed-hash message authentication codes; adapted from phphseclib. 
-Kses      	HTML/XHTML filter that only allows some elements and attributes. 
-Pagination 	Simple Pagination helper based on the CodeIgniter pagination helper. 
-Upload 	    Simple upload library. 
-:ref:`validate` 	  Functions to help validate data of different kinds; based on Kohana 2.x helper. 
-Zip 	      Simple Zip library that allows creation and downloading of zip files. 
-====        ===========
++-------------+-----------------------------------------------------------------------------------+
+| Name       	| Description                                                                       |
++=============+===================================================================================+
+| BigInteger 	| Arbitrary precision integer arithmetic library; adapted from phphseclib.          |
++-------------+-----------------------------------------------------------------------------------+
+| Email     	| Simple Email library that permits email to be sent using Mail, Sendmail, or SMTP. |
++-------------+-----------------------------------------------------------------------------------+
+| I18n 	      | Simple internationalisation library used by Wolf CMS core for translations.       |
++-------------+-----------------------------------------------------------------------------------+
+| Hash      	| Keyed-hash message authentication codes; adapted from phphseclib.                 |
++-------------+-----------------------------------------------------------------------------------+
+| Kses      	| HTML/XHTML filter that only allows some elements and attributes.                  |
++-------------+-----------------------------------------------------------------------------------+
+| Pagination 	| Simple Pagination helper based on the CodeIgniter pagination helper.              |
++-------------+-----------------------------------------------------------------------------------+
+| Upload 	    | Simple upload library.                                                            |
++-------------+-----------------------------------------------------------------------------------+
+| :ref:`validate` 	  | Functions to help validate data of different kinds; based on Kohana 2.x helper.   |
++-------------+-----------------------------------------------------------------------------------+
+| Zip 	      | Simple Zip library that allows creation and downloading of zip files.             |
++-------------+-----------------------------------------------------------------------------------+
 
 
 .. _validate:
@@ -48,22 +56,22 @@ Validate helper is for validating fields. In this example it is used to check fo
 
 .. code-block:: php
 
-<form action="<?php echo $this->url(); ?>" method="post">
-E-mail: <input type="text" name="email" />
-<input name="submit" type="submit" value="Submit" />
-</form>
- 
-<?php
-use_helper('Validate');
-$email = isset($_POST['email']) ? htmlentities($_POST['email'], ENT_QUOTES, "UTF-8") : '';
-if(isset($_POST['submit'])):
-   if(Validate::email($email)== true):
-       echo '<h3>Valid e-mail</h3>';
-     else:
-       echo '<h3>Invalid e-mail!</h3>';
-   endif;
-endif;
-?>
+  <form action="<?php echo $this->url(); ?>" method="post">
+  E-mail: <input type="text" name="email" />
+  <input name="submit" type="submit" value="Submit" />
+  </form>
+   
+  <?php
+  use_helper('Validate');
+  $email = isset($_POST['email']) ? htmlentities($_POST['email'], ENT_QUOTES, "UTF-8") : '';
+  if(isset($_POST['submit'])):
+     if(Validate::email($email)== true):
+         echo '<h3>Valid e-mail</h3>';
+       else:
+         echo '<h3>Invalid e-mail!</h3>';
+     endif;
+  endif;
+  ?>
 
 It also has support for:
 
