@@ -24,27 +24,30 @@ The functionality provided by the helper will only be available on the page(s) w
 Helpers currently supplied with Wolf CMS
 ----------------------------------------
 
-+---------------------+-----------------------------------------------------------------------------------+
-| Name                | Description                                                                       |
-+=====================+===================================================================================+
-| BigInteger          | Arbitrary precision integer arithmetic library; adapted from phphseclib.          |
-+---------------------+-----------------------------------------------------------------------------------+
-| Email               | Simple Email library that permits email to be sent using Mail, Sendmail, or SMTP. |
-+---------------------+-----------------------------------------------------------------------------------+
-| I18n                | Simple internationalisation library used by Wolf CMS core for translations.       |
-+---------------------+-----------------------------------------------------------------------------------+
-| Hash                | Keyed-hash message authentication codes; adapted from phphseclib.                 |
-+---------------------+-----------------------------------------------------------------------------------+
-| Kses                | HTML/XHTML filter that only allows some elements and attributes.                  |
-+---------------------+-----------------------------------------------------------------------------------+
-| Pagination          | Simple Pagination helper based on the CodeIgniter pagination helper.              |
-+---------------------+-----------------------------------------------------------------------------------+
-| Upload              | Simple upload library.                                                            |
-+---------------------+-----------------------------------------------------------------------------------+
-| :ref:`validate`     | Functions to help validate data of different kinds; based on Kohana 2.x helper.   |
-+---------------------+-----------------------------------------------------------------------------------+
-| Zip                 | Simple Zip library that allows creation and downloading of zip files.             |
-+---------------------+-----------------------------------------------------------------------------------+
+.. list-table:: Current Helpers
+   :widths: 15 40
+   :header-rows: 1
+
+   * - Name
+     - Description
+   * - BigInteger
+     - Arbitrary precision integer arithmetic library; adapted from phphseclib.
+   * - Email
+     - Simple Email library that permits email to be sent using Mail, Sendmail, or SMTP.
+   * - I18n
+     - Simple internationalisation library used by Wolf CMS core for translations.
+   * - Hash
+     - Keyed-hash message authentication codes; adapted from phphseclib.
+   * - Kses
+     - HTML/XHTML filter that only allows some elements and attributes.
+   * - Pagination
+     - Simple Pagination helper based on the CodeIgniter pagination helper.
+   * - Upload
+     - Simple upload library.
+   * - Validate
+     - Functions to help validate data of different kinds; based on Kohana 2.x helper.
+   * - Zip
+     - Simple Zip library that allows creation and downloading of zip files.
 
 
 .. _validate:
