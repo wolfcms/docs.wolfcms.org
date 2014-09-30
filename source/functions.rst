@@ -351,7 +351,7 @@ The value of the search term can be contained in a variable. For example, the co
 .. code-block:: php
 
 	<?php // simplified code:
-    $topPage = $this->find($parent);
+		$topPage = $this->find($parent);
 	?>
 	 
 	<ul>
@@ -415,9 +415,10 @@ Finding "top slug" for page tree
 It is often useful to find the slug of the top (level 1) page in a tree. This can be using for conditional navigation, or setting a unique background or banner for that area of the site, etc. The most simple code for this can use the ``getUri()`` function: 
 
 .. code-block:: php
-
-	// Returns the top parent slug:
-	$topParent = reset(explode('/', $this->getUri()));
+	<?php
+		// Returns the top parent slug:
+		$topParent = reset(explode('/', $this->getUri()));
+	?>
 	
 For the URI of ``fruit/apples/granny-smith`` with the code above, then ``echo $topParent;`` would return ``fruit``. 
 
@@ -443,5 +444,81 @@ If one wanted a list of “sibling” pages (at same level, with same parent), y
 	<?php endif; ?>
 	
 .. note:: Note that the code as given omits the current page. To include all sibling pages, including the current page, remove the “inner” if/endif statements (lines 4 and 6). 
+
+hasContent()
+------------
+
+The ``hasContent()`` function may be thought of as the conditional counterpart of the ``content()`` function *(See the ``content`` function entry for fuller explanation.)*
+
+It can take two parameters:
+
+* A page-part must given as the first parameter. If it is found, the function returns **true**, otherwise it returns **false**.
+* Like ``content()``, the ``hasContent()`` function can also be inherited by setting the second parameter to **true** (optional); by default this is set to **false**.
+
+Examples
+++++++++
+
+Again, like ``content()``, this function relates to a given object, and so is used like this:
+
+.. code-block:: php
+
+	<?php echo $this->hasContent('page-part') ? $this->content('page-part'): ''; ?>
+
+For the page-part to be inherited by all descendant pages, use:
+
+.. code-block:: php
+
+	<?php echo $this->hasContent('page-part') ? $this->content('page-part', true): ''; ?>
+
+Version notes
++++++++++++++
+
+< 0.6.0
+```````
+
+In versions up to and including 0.6, the name does not quite match the operation of this function: it does not test to see if “page-part” has any content, and then echoes it if there is some text there. Rather, it checks to see if there is a “page-part”, and then echoes whatever is there.
+
+In other words, this function tests to see if a part exists, and will return “true” even if the part is there with no content at all.
+
+0.7.0+
+``````
+
+With the introduction of the ``partExists()`` function, ``hasContent()`` now behaves as expected by the name: it checks to see if the part exists and if that part contains any content.
+
+
+id()
+----
+
+The ``id()`` function returns the database ID of the current page. This code:
+
+.. code-block:: php
+
+	<?php echo $this->id(); ?>
+
+will return a number, e.g. “1” for the root page (“Home page”) created at install time. 
+
+.. note:: Note that for Archive pages, (e.g., the %B %Y archive monthly archive page created during installation), the ``id()`` result will be the same no matter which month (in this example) is being displayed, since each one is the same “page”. 
+
+Finding the ID of a page
+++++++++++++++++++++++++
+
+To discover the ID of any page (“68” in the examples below), either *(a)* hover over the title in the Pages index, and the page id and slug will be displayed in a tooltip: 
+
+.. image:: ../images/pageid_tooltip.png
+
+or *(b)* click the **Settings** tab when editing the page:
+
+.. image:: ../images/pageid_settings.png
+
+See also
+````````
+
+The following functions also make use of the *id value* of a page:
+
+* :ref:`findById()`
+* :ref:`linkById()`
+* :ref:`urlById()`
+
+
 
 
