@@ -277,7 +277,7 @@ Set the locale to your language with the *setlocale* PHP function:
 For more information about this function, consult the PHP manual on *setlocale*  http://php.net/setlocale
 
 description()
-=============
+-------------
 
 In editing a page, under the **Metadata** tab is the “Description” field which makes use of the ``description()`` function. The default Layout includes this line in the ``<head>…</head>`` section: 
 
@@ -288,7 +288,7 @@ In editing a page, under the **Metadata** tab is the “Description” field whi
 This checks to see if there is any Metadata filled in for the page, and if there is, it is used. Otherwise, the default text is used. 
 
 executionTime()
-===============
+---------------
 
 The ``executionTime()`` function returns the time in seconds it takes for the page to be rendered. It can be called this way:
 
@@ -297,5 +297,151 @@ The ``executionTime()`` function returns the time in seconds it takes for the pa
 	<?php echo $this->executionTime(); ?>
 	
 When **DEBUG** is defined as **true** in ``config.php``, this information is also reported in the footer of the admin pages.
+
+find()
+------
+
+The ``find()`` function can be used to find and retrieve Page objects. As such, it needs a value to search on, either a **slug** value or a variable. It returns a Page object which has further functions to retrieve page information (or an array of information, depending on which of the object's function you use). A simple example: 
+
+.. code-block:: php
+
+	<?php
+		$pageobject = $this->find('/about-us');
+		echo $pageobject->link();
+	?>
+	
+You can also directly access the object's (in this case) ``link()`` function with a short hand notation. This prevents you from first having to assign the result of the ``find()`` function to a variable before accessing the object's functions. A simple example: 
+
+.. code-block:: php
+
+	<?php echo $this->find('/about-us')->link(); ?>
+	
+These two examples are functionally the same and produce the following HTML from anywhere in the site:
+
+.. code-block:: html
+
+	<a href="http://www.mywolfsite.com/about_us">About us</a>
+	
+For the **main** level of navigation, ``find()`` does not need forward-slashes. All of these will produce the same result:
+
+* $this->find('/about-us')
+* $this->find('/about-us/')
+* $this->find('about-us')
+
+``find()`` can be used in conjunction with most (probably all!) of Wolf's other functions, not just "link", as in the example above.
+
+Examples
+++++++++
+
+Finding pages at Level 2
+````````````````````````
+
+When looking for child-of-child pages *(That is, pages at level “2”; see the ``level()`` documentation for explanations of levels)*, both terms need to be given:
+
+* **hard** set: ``$this->find('fruit/apples');``
+* using variables: ``$this->find($parent.'/'.$subpage);``
+
+Note that the ``getUri()`` function gives all slugs for a page, including the slugs of all ancestor pages.
+
+Using variables
+```````````````
+
+The value of the search term can be contained in a variable. For example, the conditional navigation in the “Wolf” default layout finds a variable, $parent, which is the current top-level navigation page. Using this value in conjunction with the "children" function produces a dynamic listing of child-pages, giving a simple menu:
+
+.. code-block:: php
+
+	<?php // simplified code:
+    $topPage = $this->find($parent);
+	?>
+	 
+	<ul>
+	<?php foreach ($topPage->children() as $subPage) : ?>
+		<li><?php echo $subPage->link(); ?></li>
+	<?php endforeach; ?>
+	</ul>
+	
+
+findById()
+----------
+
+The ``findById()`` function allows you to retrieve a set of page objects using a page's id as the search term. *(See the ``id()`` documentation on how to find the ID of any given page.)* This function works in the same way as the ``find()`` function; consult its entry for more discussion. 
+
+**See also:** ``linkById()`` and ``urlById()`` gives information about using a variable for the ID.
+
+Example
++++++++
+
+You can use the id of page to construct a basic menu of child pages. This can be helpful in cases where the slugs or location of a parent page might change (“4” is the id of the “articles” page in a default installation of Wolf): 
+
+.. code-block:: php
+
+	<?php $children = $this->findById(4)->children(); ?>
+	<ul>
+	  <?php foreach ($children as $child) : ?>
+	  <li><?php echo $child->link(); ?></li>
+	  <?php endforeach; ?>
+	</ul>
+	
+
+getUri()
+--------
+
+This function will return the **slug values** which point to a given page. 
+
+Notes
++++++
+
+For this code: ``<?php echo $this->getUri(); ?>``, note the different results:
+
+    1. for URL: ``http://www.wolfsite.com/``
+        * ``getUri()`` = [nothing]
+    2. for URL: ``http://www.mysite.com/wolf/`` (when installing Wolf CMS in a subdirectory 'wolf')
+        * ``getUri()`` = [nothing]``
+    3. for URL: ``http://www.wolfsite.com/about_us``
+        * ``getUri()`` = about_us
+    4. for URL: ``http://www.wolfsite.com/about_us.html``
+        * ``getUri()`` = about_us
+    5. for URL: ``http://www.wolfsite.com/articles/2009/11/10/my_first_article``
+        * ``getUri()`` = articles/my_first_article
+
+Note in the last example that only the **slug** values are given, not the **yyyy/mm/dd** values generated by the **Archive plugin**. For this page behaviour, compare the related "constant", CURRENT_URI.
+
+Examples
+++++++++
+
+Finding "top slug" for page tree
+````````````````````````````````
+
+It is often useful to find the slug of the top (level 1) page in a tree. This can be using for conditional navigation, or setting a unique background or banner for that area of the site, etc. The most simple code for this can use the ``getUri()`` function: 
+
+.. code-block:: php
+
+	// Returns the top parent slug:
+	$topParent = reset(explode('/', $this->getUri()));
+	
+For the URI of ``fruit/apples/granny-smith`` with the code above, then ``echo $topParent;`` would return ``fruit``. 
+
+Get list of "sibling" pages
+```````````````````````````
+
+If one wanted a list of “sibling” pages (at same level, with same parent), you wouldn't know in advance how many slugs were needed in the find-> statement, so here again ``getUri()`` should be used. The following code (to be used in a Layout) produces a simple sibling list of this kind: 
+
+* Sibling1
+* Sibling2
+* Sibling3
+
+.. code-block:: php
+
+	<?php if ($this->level() > 0) : ?>
+	<ul>
+	<?php foreach ($this->find($this->parent->getUri())->children() as $sibling) : ?>
+		<?php if ($this->slug() != $sibling->slug()) : ?>
+	<li><?php echo $sibling->link(); ?></li>
+		<?php endif; ?>
+	<?php endforeach; ?>
+	</ul>
+	<?php endif; ?>
+	
+.. note:: Note that the code as given omits the current page. To include all sibling pages, including the current page, remove the “inner” if/endif statements (lines 4 and 6). 
 
 
