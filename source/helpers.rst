@@ -105,18 +105,17 @@ At this point, call the helper, and set the options (*if this code block is put 
 
 Only three of those lines might require adjustment:
 
-  * ``base_url`` - include the slug of the current page (here, "articles"), which is the parent of the pages you wish to paginate, followed by ``?page=``
-  | **If mod_rewrite is disabled**, then add another "?" after the initial slash: ``/?articles?page=``
+  * ``base_url`` - include the slug of the current page (here, "articles"), which is the parent of the pages you wish to paginate, followed by ``?page=``. **If mod_rewrite is disabled**, then add another "?" after the initial slash: ``/?articles?page=``.
   * ``per_page`` - the number of sub-pages linked on each paginated page
   * ``num_links`` - when this number of page links is exceeded,  a "First" and "Last" link will be added to the left and right of the number list.
 
 **4. Call pagination links**
 
 .. code-block:: php
+
   <?php if ($pagination->total_rows > $pagination->per_page) echo '<p><br />Pages: '.$pagination->createLinks().'</p>'; ?>
 
 You can vary the ``<p>`` and ``<br />`` markup to suit your layout. Now **save** the Articles page. Done!
-
 
 .. _upload:
 
