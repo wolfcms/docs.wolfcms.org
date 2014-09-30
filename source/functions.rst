@@ -694,8 +694,184 @@ Arguments
 
 See also: :ref:`linkById()`
 
+1. Link with different text
+```````````````````````````
+
+Assuming that “About Us” is still the “current” page, then this code:
+
+.. code-block:: php
+
+	<?php echo $this->link('Click here!'); ?>
+
+will produce this link:
+
+.. code-block:: html
+
+	<a href="http://www.mywolfsite.com/about_us">Click here!</a>
 
 
+2. Link with Title text, adding parameter
+`````````````````````````````````````````
+
+To retain the default title, but add a further parameter, this code:
+
+.. code-block:: php
+
+	<?php echo $this->link($this->title, ' class="info"'); ?>
+
+will produce this link:
+
+.. code-block:: html
+
+	<a href="http://www.mywolfsite.com/about_us" class="info">About us</a>
+
+.. tip:: To produce links of pages other than the current one, see the :ref:`find` function. 
 
 
+.. _linkById():
+
+linkById()
+----------
+
+This function makes it possible to create a “persistent link” to a page, so that the link will not break even if the page is moved to a different location in the page hierarchy. It has the same options as the link function (see that page for explanations and examples). The page ID is used as the basis for the link, rather than the page's “slug”.
+
+**See also:** :ref:`findById()`, :ref:`urlById()`. 
+
+Usage
++++++
+
+.. code-block:: php
+
+	<?php echo Page::linkById(3); ?>
+
+or
+
+.. code-block:: php
+
+	<?php echo $this->linkById(3); ?>
+
+where “3” in the example above is the “id” of the targetted page.
+
+To find out what the ID of a given page is, either look on the “metadata” tab, or hover above the page's title or icon in the main admin page listing, where the ID will appear as a tooltip.
+
+Using a variable for the ID
+```````````````````````````
+
+Using a simple variable for the ID may not pass the filter test set by the :ref:`linkById()` function, since the variable might be a “string” rather than an “integer”, which is what this function requires. In other words, something like this:
+
+.. code-block:: php
+
+	<?php echo Page::linkById($article->id()); ?>
+
+might throw an error. It is possible to set the ID number dynamically, but it might require an extra step, wrapping the variable for the ID in with the PHP ``intval()`` function, like this:
+
+.. code-block:: php
+
+	<?php
+		$articleId = intval($article->id());
+		echo Page::linkById($articleId);
+	?>
+	
+Another more compact solution uses PHP (int) to cast the value as an integer:
+
+.. code-block:: php
+
+	<?php
+		echo Page::linkById((int)$article->id());
+	?>
+
+With either of these solutions in place, the ``linkById()`` function will work as expected.
+
+
+.. _next():
+
+next()
+------
+
+Wolf provides a simple **previous** and **next** function. next returns an array of values relating to the page following the current page, if it exists. It is thus not used on its own, but normally would be used in the Layout to provide a link to the **next* page.
+
+Example
++++++++
+
+The following code tests to see if a **next** page exists. If it does, it makes a link accompanied by a label with a double-arrow pointing right:
+
+.. code-block:: php
+
+	<?php if ($next = $this->next()): ?>
+	  <div style="float: right; border-top: thin solid #ccc; padding-top: 4px;">Next &#187; <?php echo $next->link(); ?></div>
+	<?php endif; ?>
+
+See also :ref:`previous()`.
+
+.. _odd_even():
+
+odd_even()
+----------
+
+This simple function returns either **odd** or **even** (in that order) in turn. This helps especially in the production of tables, or in any case where alternating values need to be produced.
+
+For example, used in a foreach loop of this kind (note the “class” in the paragraph tag):
+
+.. code-block:: php
+
+	<?php foreach ($articles as $article): ?>
+	  <p class="<?php echo odd_even(); ?>"><?php echo $article->title(); ?></p>
+	<?php endforeach; ?>
+
+the ``odd_even()`` function would produce this output:
+
+.. code-block:: html
+
+	<p class="odd">Yesterday</p>
+	<p class="even">Penny Lane</p>
+	<p class="odd">Help!</p>
+	<p class="even">Eleanor Rigby</p>
+	...
+
+This function has an alias as ``even_odd()`` which produces identical output.
+
+.. _parent():
+
+parent()
+--------
+
+``parent($level)`` returns an array of values relating to the parent page of the current page. Normally, then, it is not used on its own, but to give some information about the parent page.
+Using the ``$level`` parameter
+
+``$level`` must be initialized properly if it is to be used:
+
+* If you do NOT supply ``$level``, you simply get the parent object.
+* If ``$level > $this->level()``, you get **FALSE**.
+* If ``$level == $this->level()``, you get ``$this`` returned.
+* Otherwise it tries the above tests with the parent object.
+
+Thus, if a value is given for ``$level``, it should be one of: null, equal-to-current-level, or greater-than-current-level.
+Examples
+
+For the following tree of pages:
+
+.. code-block:: txt
+
+	Home Page
+	  |
+	  |- Hickory
+	  |    |
+	  |    |- Dickory
+	  |    |
+	  |    |- Dock
+	  |
+	  |- Clock
+
+* when Clock is the current page, then:
+	* ``$this->parent()->title()`` returns **Home Page**
+	* ``$this->parent()->slug()`` returns **' '** (i.e., null)
+	* ``$this->parent()->level()`` returns **0**
+* when Dock is the current page, then:
+	* ``$this->parent()->title()`` returns **Hickory**
+	* ``$this->parent(2)->title()`` returns **Dock** (this page is at level 2)
+	* ``$this->parent()->slug()`` returns **hickory**
+	* ``$this->parent()->level()`` returns **1**
+	* etc. …
+* when Home Page is the current page, then:
+	* ``$this->parent()->ANYTHING`` returns an **ERROR** (do not use it!)
 
