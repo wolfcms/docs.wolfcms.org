@@ -42,13 +42,21 @@ Helpers currently supplied with Wolf CMS
      - HTML/XHTML filter that only allows some elements and attributes.
    * - Pagination
      - Simple Pagination helper based on the CodeIgniter pagination helper.
-   * - Upload
+   * - :ref:`upload`
      - Simple upload library.
    * - :ref:`validate`
      - Functions to help validate data of different kinds; based on Kohana 2.x helper.
    * - Zip
      - Simple Zip library that allows creation and downloading of zip files.
 
+.. _upload:
+
+Upload
+------
+
+The Upload helper is a way for you to add simple file upload functionality to Wolf CMS.
+
+.. danger:: This helper is still under development, and does not yet work.
 
 .. _validate:
 
