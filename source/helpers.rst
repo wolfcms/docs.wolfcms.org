@@ -4,14 +4,14 @@
 Helpers
 =========
 
-Helpers are similar to plugins: they are separate pieces of code which extend Wolf CMS's functionality. However, helpers are never loaded in unless specifically called by an outside piece of code.
+Helpers are similar to plugins: they are separate pieces of code which extend Wolf CMS's functionality. However, helpers are never loaded unless specifically called by an outside piece of code.
 
 They are found in the ``<root>/wolf/helpers/`` directory.
 
 Using Helpers
 -------------
 
-To call a single helper, use: ``<?php use_helper('Pagination'); ?>``
+To call a single helper, use: ``<?php use_helper('Helpername'); ?>``
 
 You can call more than one helper at a time by listing them as parameters:
 
@@ -71,7 +71,11 @@ Open the **Articles** page for editing: this is the **only** page used for these
 
 .. code-block:: php
 
-  <?php $last_articles = $this->children(array('limit'=>5, 'offset'=>($pagination->cur_page)*($pagination->per_page),  'order'=>'page.created_on DESC')); ?>
+  <?php $last_articles = $this->children(array(
+    'limit'=>5,
+    'offset'=>($pagination->cur_page)*($pagination->per_page),
+    'order'=>'page.created_on DESC'
+  )); ?>
   
 Here, note that ``limit`` should be the **same value** as the ``per_page`` value in the set up of step #3, below. The ``offset`` code is required by the helper to form the links properly, but takes its values from the pagination set up.
 
@@ -176,4 +180,3 @@ It also has support for:
 * multiple()
 * valid_utf8()
 * compliant_utf8()
-
