@@ -204,7 +204,7 @@ If you need to display one of these "custom" parts, like the sidebar tab in the 
 
 	<?php echo $this->content('sidebar'); ?>
 
-.. note:: Note: if you use <?php echo $this->content(); ?> in page content, it will create an infinite loop: so don’t do it! In other words, only use that code for the page body tab in a Layout, not in a Page.)
+.. note:: Note: if you use ``<?php echo $this->content(); ?>`` in page content, it will create an infinite loop: so don’t do it! In other words, only use that code for the page body tab in a Layout, not in a Page.
 
 "Inheriting" content
 ++++++++++++++++++++
