@@ -56,7 +56,7 @@ Upload
 
 The Upload helper is a way for you to add simple file upload functionality to Wolf CMS.
 
-.. danger:: This helper is still under development, and does not yet work.
+.. caution:: This helper is still under development, and does not yet work.
 
 .. _validate:
 
