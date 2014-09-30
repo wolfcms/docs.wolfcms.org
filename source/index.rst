@@ -21,7 +21,7 @@ Contents:
     faq
     contributing
     glossary
-	styleguide
+    styleguide
 
 Indices and tables
 ==================
