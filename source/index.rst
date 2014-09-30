@@ -6,6 +6,9 @@
 Welcome to Wolf CMS's documentation!
 ====================================
 
+.. image:: ../images/wolfcms.gif
+   :alt: WolfCMS logo
+
 Contents:
 
 .. toctree::
