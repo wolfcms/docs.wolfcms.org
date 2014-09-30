@@ -198,6 +198,8 @@ In order to display the body, put this code at the appropriate place in your lay
 
 Other content parts (page-parts) can be created by clicking the green "+" icon above the upper-right corner of the page editing box. (The red "-" icon deletes the active part/tab, so be careful!)
 
+.. image:: ../images/content_tab-buttons.png
+
 If you need to display one of these "custom" parts, like the sidebar tab in the Home Page graphic above (circled in blue), just add it to the parameter: 
 
 .. code-block:: php
@@ -274,7 +276,26 @@ Set the locale to your language with the *setlocale* PHP function:
 	
 For more information about this function, consult the PHP manual on *setlocale*  http://php.net/setlocale
 
+description()
+=============
 
+In editing a page, under the **Metadata** tab is the “Description” field which makes use of the ``description()`` function. The default Layout includes this line in the ``<head>…</head>`` section: 
 
+.. code-block:: php
+
+	  <meta name="description" content="<?php echo ($this->description() != '') ? $this->description() : 'Default description goes here'; ?>" />
+	
+This checks to see if there is any Metadata filled in for the page, and if there is, it is used. Otherwise, the default text is used. 
+
+executionTime()
+===============
+
+The ``executionTime()`` function returns the time in seconds it takes for the page to be rendered. It can be called this way:
+
+.. code-block:: php
+
+	<?php echo $this->executionTime(); ?>
+	
+When **DEBUG** is defined as **true** in ``config.php``, this information is also reported in the footer of the admin pages.
 
 
