@@ -6,6 +6,8 @@ Functions
 
 The "functions" section houses pages that provide more detailed information about individual functions of Wolf CMS. These pages serve as an additional source of information on top of the PHPDoc references. These function pages may be out of date since they are manually maintained. 
 
+.. _author():
+
 author()
 --------
 
@@ -15,7 +17,9 @@ Wolf saves the id of the user who creates a page, and the name for that id can b
 
 	<p class="meta">Posted by <?php echo $this->author(); ?></p>
 	
-See also the updater() function.
+See also the :ref:`updater()` function.
+
+.. _authorId():
 
 authorId()
 ----------
@@ -33,7 +37,9 @@ Wolf saves the unique id number of the user who creates a page, and that id numb
 
 would be a more reliable test than one using the author() function (which returns the name) if two users were both registered with same name.
 
-There is also a updaterId() function available.
+There is also a :ref:`updaterId()` function available.
+
+.. _breadcrumb:
 
 breadcrumb()
 ------------
@@ -49,6 +55,8 @@ The "Breadcrumb" field is found under the "Metadata" tab next to the "Page Title
 .. [#f1] 
 	
 	It can be used, then, as a secondary “page title” field.
+
+.. _breadcrumbs():
 
 breadcrumbs()
 -------------
@@ -77,12 +85,14 @@ Any character may be used this way.
 
 	<?php echo $this->breadcrumbs('\\'); ?> 
 
+.. _children():
+
 children()
 ----------
 
-*children()* returns an array of values relating to the child pages of the current page. [#f2]_ Normally, then, it is not used on its own, but to give some information about published subpages to a given page.
+``children()`` returns an array of values relating to the child pages of the current page. [#f2]_ Normally, then, it is not used on its own, but to give some information about published subpages to a given page.
 
-The array produced by children() requires a foreach loop to present usable information. The most simple listing of subpage titles, then, could look like this:
+The array produced by ``children()`` requires a foreach loop to present usable information. The most simple listing of subpage titles, then, could look like this:
 
 .. code-block:: php
 
@@ -106,7 +116,7 @@ In situations when in return only a single result is desired, the foreach loop s
 		<?php echo $last_article->content(); ?>
 		<?php if ($last_article->hasContent('extended')) echo $last_article->link('Continue Reading&#8230;'); ?>
 
-For further information on how to use *children()* in constructing menus, see how to Display a list of subpages. 
+For further information on how to use ``children()`` in constructing menus, see how to Display a list of subpages. 
 
 Conditions
 ++++++++++
@@ -114,7 +124,7 @@ Conditions
 Including hidden pages
 ``````````````````````
 
-By default, children() only returns "published" pages. [#f3]_ In the following line of code, the final 'true' tells Wolf to include hidden pages as well:
+By default, ``children()`` only returns "published" pages. [#f3]_ In the following line of code, the final 'true' tells Wolf to include hidden pages as well:
 
 .. code-block:: php
 
@@ -124,7 +134,7 @@ By default, children() only returns "published" pages. [#f3]_ In the following l
 Additional arguments
 ````````````````````
 
-Four more arguments can be given to *children()* to further define the subpages it returns: 
+Four more arguments can be given to ``children()`` to further define the subpages it returns: 
 
 * where - sets a condition
 * order - determines the sort order (by field name in page table [see note below], either ASC ascending, or DESC descending)
@@ -159,18 +169,20 @@ The default is *position*, which is set automatically when the drag-drop page re
 	
 .. [#f2]
 
-	Consult the documentation on $this-> to find out what the “current” page is in different situations.
+	Consult the documentation on :ref:`$this->` to find out what the “current” page is in different situations.
 	
 .. [#f3]
 
 	Consult the documentation on creating a page for a full list of page-status definitions.
 
+.. _childrenCount():
+	
 childrenCount()
 ---------------
 
-The childrenCount() function returns a count of how many child pages belong to the current page. A simple echo $this->childrenCount(); will return the number of “published” pages to the current page.
+The ``childrenCount()`` function returns a count of how many child pages belong to the current page. A simple ``echo $this->childrenCount();`` will return the number of “published” pages to the current page.
 
-childrenCount() can be useful, then, for determining when to include navigation, for example: 
+``childrenCount()`` can be useful, then, for determining when to include navigation, for example: 
 
 .. code-block:: php
 
@@ -181,12 +193,14 @@ childrenCount() can be useful, then, for determining when to include navigation,
 		}
 	?>
 
-It takes the same parameters as the children() function; see the above for details. 
+It takes the same parameters as the :ref:`children()` function; see the above for details. 
+
+.. _children():
 
 content()
 ---------
 
-As its name suggests, the content() function returns the content of pages created in Wolf. More specifically, it returns the content of the page-part given as a parameter; if no parameter is given, then it defaults to the body page-part, circled in red in this graphic: 
+As its name suggests, the ``content()`` function returns the content of pages created in Wolf. More specifically, it returns the content of the page-part given as a parameter; if no parameter is given, then it defaults to the body page-part, circled in red in this graphic: 
 
 .. image:: ../images/content_tabs.png
 
@@ -222,11 +236,13 @@ In order for the “part” to be inherited by "child" pages (and "child-of-chil
 Displaying the content of one page on a different page
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-If you want to call the content from a some page onto a different page, you must use the find() function in conjunction with content(). For example, to display the content of the default “About us” page on any other page, use this code:
+If you want to call the content from a some page onto a different page, you must use the :ref:`find()` function in conjunction with :ref:`content()`. For example, to display the content of the default “About us” page on any other page, use this code:
 
 .. code-block:: php
 
 	<?php echo $this->find('about_us')->content(); ?>
+
+.. _date():	
 
 date()
 ------
@@ -276,6 +292,8 @@ Set the locale to your language with the *setlocale* PHP function:
 	
 For more information about this function, consult the PHP manual on *setlocale*  http://php.net/setlocale
 
+.. _description():
+
 description()
 -------------
 
@@ -287,6 +305,8 @@ In editing a page, under the **Metadata** tab is the “Description” field whi
 	
 This checks to see if there is any Metadata filled in for the page, and if there is, it is used. Otherwise, the default text is used. 
 
+.. _executionTime():
+
 executionTime()
 ---------------
 
@@ -297,6 +317,8 @@ The ``executionTime()`` function returns the time in seconds it takes for the pa
 	<?php echo $this->executionTime(); ?>
 	
 When **DEBUG** is defined as **true** in ``config.php``, this information is also reported in the footer of the admin pages.
+
+.. _find():
 
 find()
 ------
@@ -360,13 +382,14 @@ The value of the search term can be contained in a variable. For example, the co
 	<?php endforeach; ?>
 	</ul>
 	
+.. _findById():
 
 findById()
 ----------
 
-The ``findById()`` function allows you to retrieve a set of page objects using a page's id as the search term. *(See the ``id()`` documentation on how to find the ID of any given page.)* This function works in the same way as the ``find()`` function; consult its entry for more discussion. 
+The ``findById()`` function allows you to retrieve a set of page objects using a page's id as the search term. *(See the :ref:`id()` documentation on how to find the ID of any given page.)* This function works in the same way as the :ref:`find()` function; consult its entry for more discussion. 
 
-**See also:** ``linkById()`` and ``urlById()`` gives information about using a variable for the ID.
+**See also:** :ref:`linkById()` and :ref:`urlById()` gives information about using a variable for the ID.
 
 Example
 +++++++
@@ -382,6 +405,7 @@ You can use the id of page to construct a basic menu of child pages. This can be
 	  <?php endforeach; ?>
 	</ul>
 	
+.. _getUri():
 
 getUri()
 --------
@@ -445,10 +469,12 @@ If one wanted a list of “sibling” pages (at same level, with same parent), y
 	
 .. note:: Note that the code as given omits the current page. To include all sibling pages, including the current page, remove the “inner” if/endif statements (lines 4 and 6). 
 
+.. _hasContent:
+
 hasContent()
 ------------
 
-The ``hasContent()`` function may be thought of as the conditional counterpart of the ``content()`` function *(See the ``content`` function entry for fuller explanation.)*
+The ``hasContent()`` function may be thought of as the conditional counterpart of the ``content()`` function *(See the :ref:`content` function entry for fuller explanation.)*
 
 It can take two parameters:
 
@@ -483,8 +509,9 @@ In other words, this function tests to see if a part exists, and will return “
 0.7.0+
 ``````
 
-With the introduction of the ``partExists()`` function, ``hasContent()`` now behaves as expected by the name: it checks to see if the part exists and if that part contains any content.
+With the introduction of the :ref:`partExists()` function, ``hasContent()`` now behaves as expected by the name: it checks to see if the part exists and if that part contains any content.
 
+.. _id():
 
 id()
 ----
@@ -518,6 +545,156 @@ The following functions also make use of the *id value* of a page:
 * :ref:`findById()`
 * :ref:`linkById()`
 * :ref:`urlById()`
+
+.. _includeSnippet():
+
+includeSnippet()
+----------------
+
+This function is used to include **snippets** in Wolf pages. The syntax is:
+
+.. code-block:: php
+
+	<?php $this->includeSnippet('the_name_of_the_snippet'); ?>
+
+On the way the special PHP variable ``$this->`` behaves when used in a snippet, see the documentation for ``$this->``.
+
+Snippets may call/include other snippets.
+
+From **0.7.0** the ``includeSnippet()`` function will return **true** if the snippet name is found, but **false** if the snippet name does not exist. If a test is used which evaluates ``includeSnippet()`` as **true**, the value of the snippet will be passed automatically.
+
+Hints
++++++
+
+Conditional Use of Snippets
+```````````````````````````
+
+You could also create a snippet with your php code, then only include it on the relevant page by using a conditional statement. That way you won't need a page-part, and it's only a small addition to your layout: 
+
+.. code-block:: php
+
+	<?php // only include on contact page or children
+		if(url_start_with('/contact'))  $this->includeSnippet('the_name_of_the_snippet'); 
+	?>
+	
+Just keep in mind that it will also be included in any children pages, because it's looking for a url that begins with the provided text. 
+
+.. _keywords():
+
+keywords()
+----------
+
+In editing a page, under the Metadata tab is the “Keywords” field which makes use of the keywords function. The default Layout includes this line in the ``<head>…</head>`` section:
+
+.. code-block:: html
+
+	<meta name="keywords" content="<?php echo ($this->keywords() != '') ? $this->keywords() : 'default, keywords, here'; ?>" />
+
+This checks to see if there are any keywords filled in for the page, and if there are, they are used. Otherwise, the default text is used.
+
+.. _level():
+
+level()
+-------
+
+``level()`` refers to the “distance” of a page in the tree from Home Page or, more precisely, the number of elements a given page is distant from the “root” in the URI. “Home Page” (or “root” in the URI) is at zero.
+
+You can echo the level of a page to the screen using this code:
+
+.. code-block:: php
+
+	<?php echo $this->level(); ?>
+
+Examples
+++++++++
+
+.. list-table::
+   :header-rows: 1
+   
+	* 
+	 - In this URI
+	 - this page:
+	 - is at this level
+	*
+	 - http://www.wolfsite.com/
+	 - (home page) 	
+	 - 0
+	*
+	 - http://www.site.com/wolf/
+	 - (home page) 	
+	 - 0
+	*
+	 - http://www.wolfsite.com/about-us.html
+	 - about-us.html
+	 - 1
+	*
+	 - http://www.wolfsite.com/about-us/contact
+	 - contact
+	 - 2
+
+It is **important to note** that the “archive” (“blog”) type pages work this way:
+
+
+.. list-table::
+   :header-rows: 1
+   
+	*
+	 - In this URI:
+	 - this page:
+	 - is at this level:
+	*
+	 - http://www.wolfsite.com/articles
+	 - articles
+	 - 1
+	*
+	 - http://www.wolfsite.com/articles/2009/03/07/my-news
+	 - my-news
+	 - 5
+	*
+	 - http://www.wolfsite.com/articles/my-news
+	 - my-news
+	 - 5
+
+.. note::: In an “archive” setting, the level of my-news is always 5, even though it is the child of the articles page which is at level 1.
+
+Usage note
+``````````
+
+``level()`` is very useful in a test to keep things off the “Homepage” that should only appear “inside” the site:
+
+.. code-block:: php
+
+	<?php if ($this->level() != 0) : ?>
+	... do stuff inside the site, but not on the Homepage ...
+	<?php endif; ?>
+
+The ``if()`` test checks to see if the level is **not** '0' (= homepage), and if not, whatever appears before the ``endif`` will be run.
+
+.. _link():
+
+link()
+------
+
+The ``link()`` function by default produces the title of the current page wrapped in HTML hyperlink tags For example, in an out-of-the-box Wolf install, for the “About Us” page, this code:
+
+.. code-block:: php
+
+	<?php echo $this->link(); ?>
+
+produces:
+
+.. code-block:: html
+
+	<a href="http://www.mywolfsite.com/about_us">About us</a>
+	
+Arguments
++++++++++
+
+``link()`` can take two arguments: the first to give the title for the link (so overriding the default page title), the second can be used for other link parameters.
+
+See also: :ref:`linkById()`
+
+
 
 
 
