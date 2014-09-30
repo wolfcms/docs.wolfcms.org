@@ -188,6 +188,8 @@ content()
 
 As its name suggests, the content() function returns the content of pages created in Wolf. More specifically, it returns the content of the page-part given as a parameter; if no parameter is given, then it defaults to the body page-part, circled in red in this graphic: 
 
+.. image:: content_tabs.png
+
 In order to display the body, put this code at the appropriate place in your layout:
 
 .. code-block:: php
