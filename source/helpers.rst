@@ -58,9 +58,9 @@ The default pagination helper which comes with Wolf is a light revision of the t
 
     **Pages:** **1** 2 3 4
 
-The notes that follow explain how to set up Pagination.php for use with the default "Articles" page in Wolf CMS, but can be modified for use with other pages as well. **Be aware** that for the *Set up*, the code varies depending on whether ``mod_rewrite`` is enabled or disabled.
+The notes that follow explain how to set up Pagination.php for use with the default "Articles" page in Wolf CMS, but can be modified for use with other pages as well. **Be aware** that for the *Set up* (#3, below), the code varies depending on whether ``mod_rewrite`` is enabled or disabled.
 
-.. _note:: These instructions assume ``mod_rewrite`` is **enabled**, with the **disabled** version given as a variation.
+.. note:: These instructions assume ``mod_rewrite`` is **enabled**, with the **disabled** version given as a variation.
 
 Usage
 +++++
