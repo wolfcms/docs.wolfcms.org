@@ -1110,7 +1110,6 @@ That can be summarized in a table as follows:
 
 .. list-table:: Behaviour summary
    :widths: 40 60
-   :header-rows: 1
    
    * - If ``$this->`` appears in...
      - ...then ``$this->`` points to::
