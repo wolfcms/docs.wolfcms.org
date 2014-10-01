@@ -1112,8 +1112,8 @@ That can be summarized in a table as follows:
    :header-rows: 1
    :widths: 15 40
 
-   *  -  If ``$this->`` appears in
-      -  then ``$this->`` points to
+   *  -  If ``$this->`` appears in...
+      -  ...then ``$this->`` points to:
    *  -  Layout
       -  currently displayed page
    *  -  Body of page
