@@ -1109,20 +1109,22 @@ Properly speaking, this is not a “Wolf” function at all. PHP uses a special 
 That can be summarized in a table as follows: 
 
 .. list-table::
+   :widths: 40 60
    :header-rows: 1
    
-	 * - If ``$this->`` appears in…
-	   - …then ``$this->`` points to:
-	 * - Layout
-	   - currently displayed page
-	 * - Body of page
-	   - that specific page **only**
-	 * - Page-part (tab) 	
-	   - the owning page **only**
-	 * - Snippet 	
-	   - as above, depending on where snippet is called 
+   * - If ``$this->`` appears in…
+     - …then ``$this->`` points to:
+   * - Layout
+     - currently displayed page
+   * - Body of page
+     - that specific page **only**
+   * - Page-part (tab) 	
+     - the owning page **only**
+   * - Snippet 	
+     - as above, depending on where snippet is called
 
-.. _title():
+
+     .. _title():
 
 title()
 -------
