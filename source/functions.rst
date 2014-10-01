@@ -1063,7 +1063,7 @@ This shows you how to turn the ``tags()`` array into string, and this can then b
 Plugin
 ++++++
 
-The most obvious way of handling tags is by using the `Tagger<https://github.com/silentworks/tagger>` plugin which is under active development. Its growing feature set allows for a range of tag-management and usage options. 
+The most obvious way of handling tags is by using the `Tagger<https://github.com/silentworks/tagger>`_ plugin which is under active development. Its growing feature set allows for a range of tag-management and usage options. 
 
 Example
 +++++++
@@ -1111,21 +1111,16 @@ That can be summarized in a table as follows:
 .. list-table:
    :header-rows: 1
    
-	*
-	 - If ``$this->`` appears in…
-	 - …then ``$this->`` points to:
-	*
-	 - Layout
-	 - currently displayed page
-	*
-	 - Body of page
-	 - that specific page **only**
-	*
-	 - Page-part (tab) 	
-	 - the owning page **only**
-	*
-	 - Snippet 	
-	 - as above, depending on where snippet is called 
+	* - If ``$this->`` appears in…
+	  - …then ``$this->`` points to:
+	* - Layout
+	  - currently displayed page
+	* - Body of page
+	  - that specific page **only**
+	* - Page-part (tab) 	
+	  - the owning page **only**
+	* - Snippet 	
+	  - as above, depending on where snippet is called 
 
 .. _title():
 
