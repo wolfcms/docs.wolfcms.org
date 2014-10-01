@@ -1,5 +1,6 @@
 .. _styleguide:
 
+.. _top:
 
 Styleguide
 ==========
@@ -40,16 +41,50 @@ Sub sub sub heading title (presented as html h4 tag):
 	My sub sub sub heading title
 	````````````````````````````
 	
-On Windows AltGr + 7
+On Windows **AltGr + 7**
 
 Notes
 -----
 
-For Notes (blue block with exclamation mark) use:
+For Notes (blue block) use:
 
 .. code-block:: txt
 
 	.. note:: Your note goes here!
+	
+Result:
++++++++
+
+.. note:: This is note!
+
+Warning
+-------
+
+For Warning message (orange block) use:
+
+.. code-block:: txt
+
+	.. warning:: Your note goes here!
+	
+Result:
++++++++
+
+.. warning:: This is warning!
+
+Tip
+---
+
+For Tips (green block) use:
+
+.. code-block:: txt
+
+	.. tip:: Your note goes here!
+	
+Result:
++++++++
+
+.. tip:: This is tip!
+
 	
 Code blocks
 -----------
@@ -115,6 +150,32 @@ You can also separate the link and the target definition, like this:
 
 	.. _a link: http://example.com/
 	
+Crossreferences
++++++++++++++++
 
+To cross reference certain pages or blocks within pages use ``.. _this-is-link:`` and then ``:ref:`this-is-link``` (same name is mandatory) to link to it.
+
+Example:
+++++++++
+
+Take me to the :ref:`top`.
+	
+Images
+------
+
+You can insert image like this:
+
+.. code-block:: txt
+
+	.. image:: ../images/wolf_logo_128.png
+   :alt: Wolf CMS logo
+   
+Before you do this, you need to prepare image (crop, resize, mark...) and put it in the ``images`` folder.
+
+Result:
++++++++
+
+.. image:: ../images/wolf_logo_128.png
+   :alt: Wolf CMS logo
 
 
