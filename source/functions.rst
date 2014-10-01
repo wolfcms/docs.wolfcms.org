@@ -1114,8 +1114,14 @@ That can be summarized in a table as follows:
 
    *  -  If ``$this->`` appears in
       -  then ``$this->`` points to
-   *  -  x
-      -  y
+   *  -  Layout
+      -  currently displayed page
+   *  -  Body of page
+      -  that specific page **only**
+   *  -  Page-part (tab)
+      -  the owning page **only**
+   *  -  Snippet
+      -  as above, depending on where snippet is called
 
 
 .. _title():
