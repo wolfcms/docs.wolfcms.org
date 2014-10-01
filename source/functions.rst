@@ -788,7 +788,7 @@ With either of these solutions in place, the ``linkById()`` function will work a
 next()
 ------
 
-Wolf provides a simple **previous** and **next** function. next returns an array of values relating to the page following the current page, if it exists. It is thus not used on its own, but normally would be used in the Layout to provide a link to the **next* page.
+Wolf provides a simple :ref:`previous()` and ``next()`` function. next returns an array of values relating to the page following the current page, if it exists. It is thus not used on its own, but normally would be used in the Layout to provide a link to the **next* page.
 
 Example
 +++++++
@@ -829,6 +829,84 @@ the ``odd_even()`` function would produce this output:
 	...
 
 This function has an alias as ``even_odd()`` which produces identical output.
+
+.. _pageStatusConstants:
+
+Page Status Constants
+---------------------
+
+ Wolf assigns one of four different “status” levels to pages; each status named below also has a corresponding numerical value. Note these two examples:
+
+(1) This returns the numerical value corresponding to the page status: 
+
+.. code-block:: php
+
+	<?php echo $this->status_id; ?>
+	
+(2) The name can be used when testing for a particular status:
+
+.. code-block:: php
+
+	<?php if ($this->status_id == Page::STATUS_PUBLISHED) { echo 'PUBLISHED'; } ?>
+	
+This is the equivalent of this code (which produces the same result):
+
+.. code-block:: php
+
+	<?php if ($this->status_id == 100) { echo 'PUBLISHED'; } ?>
+
+**N.b.**: status_id does not take a parameter, and has no ”()” ending. 
+
+Draft
++++++
+
+**Constant:** Page::STATUS_DRAFT
+
+The “draft” status is for use during the early stages of producing a page, before it is ready for display on the frontend of the website.
+
+* it will **NOT** be listed by: ``$this->children()``
+* it will **NOT** be found by: ``$this->find('its_uri')``
+* it is **NOT** possible to access the page directly with its full url
+* ``$this->status_id`` would return a value of 1 (but note draft pages do not appear on the front end!)
+
+Preview
++++++++
+
+**Constant**: Page::STATUS_PREVIEW
+
+This status allows content editors to view a page “live” before publishing it; it can only be accessed by full URL (or the “View this page” link while editing in the backend) by a content editor who is logged in to Wolf.
+
+* it will **NOT** be listed by ``$this->children()``
+* it will **NOT** be found by ``$this->find('its_uri')``
+* it is possible to access it directly with its full url **ONLY IF** logged in with the role of administrator, developer, or editor
+* ``$this->status_id`` returns a value of **10**
+
+Published
++++++++++
+
+**Constant**: Page::STATUS_PUBLISHED
+
+Once “published”, a page is viewable on the frontend by any visitor to the website.
+
+* it will be listed by ``$this->children()``
+* it will be found by ``$this->find('its_uri')``
+* it is possible to access it directly with its full url
+* ``$this->status_id`` returns a value of **100**
+
+Hidden
+++++++
+
+**Constant**: Page::STATUS_HIDDEN
+
+Use this status when you have written a page that you do not want to appear in your site's navigation (e.g., RSS, Sitemap, etc.).
+
+* it will **NOT** be listed by ``$this->children()``
+* it will be found by ``$this->find('its_uri')``
+* it is possible to access it directly with its full url
+* ``$this->status_id`` returns a value of **101**
+
+.. note: A “hidden” page can be listed with ``$this->children(array(), array(), true)``, because ``children()`` can include hidden pages if the 3rd param is set to **true**.
+
 
 .. _parent():
 
@@ -875,3 +953,376 @@ For the following tree of pages:
 * when Home Page is the current page, then:
 	* ``$this->parent()->ANYTHING`` returns an **ERROR** (do not use it!)
 
+
+.. _partExists():
+
+partExists()
+------------
+
+The ``partExists()`` function is related to the :ref:`hasContent()` function, and tests for the simple presence of a specified page-part.
+
+It can take two parameters:
+
+# A page-part must given as the first parameter. If it is found, the function returns **true**, otherwise it returns **false**. These results are returned whether or not the page-part actually contains any content.
+# Like the ``content()`` and ``hasContent()`` functions, ``partExists()`` can also be inherited by setting the second parameter to **true** (optional); by default this is set to **false**.
+
+Usage
++++++
+
+.. code-block: php
+
+	<?php if ($this->partExists('page-part')) {
+	  // do something if the part exists = true
+	} else {
+	  // do something else if the part does not exist = false
+	}; ?>
+
+For more detail, see :ref:`hasContent()` function.
+
+.. _previous():
+
+previous()
+----------
+
+Wolf provides a simple ``previous()`` and :ref:`next()` function. previous returns an array of values relating to the page preceding the current page, if it exists. It is thus not used on its own, but normally would be used in the Layout to provide a link to the “preceding” page.
+
+Example
++++++++
+
+The following code tests to see if a “previous” page exists. If it does, it makes a link accompanied by a label with a double-arrow pointing left:
+
+.. code-block:: php
+
+	<?php if ($previous = $this->previous()): ?>
+	  <div style="float: left; border-top: thin solid #ccc; padding-top: 4px;"><?php echo $previous->link(); ?> &#171; Previous</div>
+	<?php endif; ?>
+	
+See also :ref:`next()`
+
+.. _slug():
+
+slug()
+------
+
+
+
+The slug is the form of the page's title used in the URL. It is produced by Wolf automatically when the page is created. For example, the “slug” for the “Articles” page is articles. Spaces are converted to hyphens: the title “Rhythm and Blues” will produce the slug ``rhythm-and-blues``.
+
+This value can be changed manually by editing it directly. When editing a page, click on the “Metadata” tab; “Slug” is the first field you see.
+
+The slug of a given page can be retrieved with:
+
+.. code-block:: php
+
+	<?php echo $this->slug(); ?>
+
+Notes
++++++
+
+* Home Page has no slug, not ever. For this reason, Wolf CMS does not offer a “slug” field in the metadata area of the root page.
+* Since the “slug” is used to form the page's URL, be careful which characters you use.
+* If the value of the slug is manually edited, it will retain the manually-edited value, even if the title of the page is changed.
+* If you wish to get the slug of a page with the slugs of all its ancestor pages, use the :ref:`getUri()` function.
+
+Example
++++++++
+
+find()
+``````
+
+The ``find()`` function uses the slug value to find a page. To find the Articles page, use ``$this->find('/articles/')``.
+Using the slug in conditions
+
+The slug is the best value to use if you want to ensure that code is used on a certain page, or to prevent some code from executing on a given page. For example, if you want to prevent some code from running on your “blog”-type pages (Articles), you could use something like this:
+
+.. code-block:: php
+
+	<?php if ($this->slug() != 'articles') {
+	  // do stuff you want to happen on all pages but the articles page
+	  code ... code ... code;
+	} ?>
+
+.. _tags():
+
+tags()
+------
+
+``tags()`` produces an array of the tags which have been entered in the **tags** field under the Metadata tab when editing a page.
+
+Usage
++++++
+
+Wolf's default installation gives a simple demonstration of a list of tags in the “Articles” page, where the following line is included:
+
+.. code-block:: php
+
+	tags: <?php echo join(', ', $article->tags()); ?>
+
+This shows you how to turn the ``tags()`` array into string, and this can then be used for other purposes.
+
+Plugin
+++++++
+
+The most obvious way of handling tags is by using the `Tagger<https://github.com/silentworks/tagger>` plugin which is under active development. Its growing feature set allows for a range of tag-management and usage options. 
+
+Example
++++++++
+
+Subpages filtered by tag
+````````````````````````
+
+If you wanted to give the list of subpages to a parent page, based on the presence of a particular tag, you could do it this way:
+
+.. code-block:: php
+
+	<?php $findTag = 'hello'; // REPLACE hello WITH THE TAG YOU WANT TO FIND ?>
+	<h3>Pages with the tag "<?php echo $findTag; ?>":</h3>
+	<ul>
+	<?php foreach ($this->children() as $child): ?>
+	<?php $childTags = join(',', $child->tags()); ?>
+	  <?php if (strpos($childTags, $findTag) !== FALSE) : ?>
+		<li><?php echo $child->link(); ?></li>
+	  <?php endif; ?>
+	<?php endforeach; ?>
+	</ul>
+
+You manually enter the tag you want to find (“hello” is used in the example above), which is echoed in a heading to your list of pages. Then the foreach loop finds the child pages, while the strpos test filters those pages with the desired tag, which is then output to an unordered list. Include that block of code on the parent page, **ensuring that the page's text filter is not TinyMCE**, which does not cope with PHP!
+
+Although this code is for use on a “parent” page to find a certain tag-term among its child pages, it could be modified to look in other “branches” of the site, or to look through deeper levels.
+
+.. _$this->:
+
+$this->
+-------
+
+Properly speaking, this is not a “Wolf” function at all. PHP uses a special variable, ``$this->``, which always points to the “current object”. But what is the “current object”? In Wolf, the meaning of ``$this->`` depends on where you use it. Here is it how works:
+
+* in the Layout, ``$this->`` points at currently displaying page, whatever it is.
+* in the Body of page, ``$this->`` points at that page only.
+* in a Page-part, ``$this->`` points at the page to which that part belongs — even if it is “inherited” by child pages with the **true** condition as in:
+
+	* ``<?php $this->content('sidebar', true); ?>``
+	* For example, if the “sidebar” of “Homepage” uses ``$this->``, and that sidebar is inherited by child pages, then ``$this->`` still refers to the homepage.
+	
+* in a Snippet, ``$this->`` will behave as outlined above, depending on whether you call the snippet in your layout, in the body of a page, or in a page-part.
+
+That can be summarized in a table as follows: 
+
+.. list-table:
+   :header-rows: 1
+   
+	*
+	 - If ``$this->`` appears in…
+	 - …then ``$this->`` points to:
+	*
+	 - Layout
+	 - currently displayed page
+	*
+	 - Body of page
+	 - that specific page **only**
+	*
+	 - Page-part (tab) 	
+	 - the owning page **only**
+	*
+	 - Snippet 	
+	 - as above, depending on where snippet is called 
+
+.. _title():
+
+title()
+-------
+
+The ``title()`` function returns the title of the current page. This code:
+
+.. code-block:: php
+
+	<?php echo $this->title(); ?>
+
+will return the text found in the “Page Title” field, prominently displayed when editing a page.
+
+Notes
++++++
+
+This function does not take any parameters, but it can be used in conjunction with the :ref:`find()` function to display the title of a page that is not current.
+
+Another example of its use can be found in “header” snippet for the Simple layout to generate Wolf's main navigation:
+
+.. code-block:: php
+
+	<li><?php echo $menu->link($menu->title, (in_array($menu->slug, explode('/', $this->url)) ? ' class="current"': null)); ?></li>
+	
+.. _updater():
+
+updater()
+---------
+
+Wolf saves the id of the user who updates a page, and the name for that id can be displayed using ``updater()``. This is sometimes given in the page's “meta”, for example:
+
+.. code-block:: php
+
+	<p class="meta">Updated by <?php echo $this->updater(); ?></p>
+	
+See also: :ref:`author()` function
+
+.. _updaterId():
+
+updaterId()
+-----------
+
+Wolf saves the unique id number of the user who updates a page, and that id number can be accessed using ``updaterId()``.
+
+For notes on usage, see the :ref:`authorId()` function page.
+
+
+.. _url():
+
+url()
+-----
+
+The ``url()`` function gives access to the URL of the current page. It does not take any parameters. If, for example, the current page was the “Articles” page, then
+
+.. code-block:: php
+
+	<?php echo $this->url(); ?>
+
+returns the value:
+
+``http://mywolfsite.com/articles ``
+
+See also :ref:`urlById()` function
+
+Usage
++++++
+
+URLs of pages that are not current
+``````````````````````````````````
+
+To return the URL of a page that is not current, use the find function. This code:
+
+.. code-block:: php
+
+	<?php echo $this->find('articles')->url(); ?>
+
+returns: ``http://mywolfsite.com/articles``, from anywhere in the site.
+
+Using a Suffix
+``````````````
+
+If you have set up Wolf to use a URL suffix to simulate static pages (e.g., ”.html”), then you might run into problems when embedding ``url()`` in a concatenated string. So, for example, in the “sidebar” code of the default “Articles” page, this code:
+
+.. code-block:: php
+
+	<?php echo $this->url() .'/'. $date . URL_SUFFIX; ?>
+
+produces an error, because ”.html” is embedded before the ``$date``. In this case, omit the suffix by using the “false” flag:
+
+.. code-block:: php
+
+	<?php echo $this->url(false) .'/'. $date . URL_SUFFIX; ?>
+
+This will make “url” omit the unwanted suffix.
+
+Creating links
+``````````````
+
+Although ``url()`` can of course be used for creating links, there is a specialized function that is normally the preferred way of doing this: see the documentation on the :ref:`link()` function.
+
+.. _url_match():
+
+url_match()
+-----------
+
+This is a simple conditional function which tests the current URI against a parameter supplied. If they match, it returns **true**; otherwise it returns **false**. 
+
+Example
++++++++
+
+A useful example is found in the default “header” snippet that is created when Wolf is installed. In the navigation code, this is the first entry in the ``<ul>`` list: 
+
+.. code-block:: php
+
+	<li><a<?php echo url_match('/') ? ' class="current"': ''; ?> href="<?php echo URL_PUBLIC; ?>">Home</a></li>
+	
+This hard-sets the “Home” link in the navigation; the ``url_match()`` function provides the test for whether the homepage is current, and echoes the ``class="current"`` for styling the anchor if the test is successful.
+
+.. note:: All elements of the URI must be matched for **true** to be returned. For example, with the URL ``http://wolfsite.com/page/child-page``, the test ``url_match('child-page')`` will return false, but ``url_match(page/child-page)`` will return true. 
+
+See also: :ref:`url_start_with()` function.
+
+.. _url_start_with():
+
+url_start_with()
+----------------
+
+This is a simple conditional function which tests the current URI against a parameter supplied. If the paratmer matches the **first** element in the URI, it returns “true”; otherwise it returns “false”. 
+
+Examples
+++++++++
+
+Consider the URL ``http://wolfsite.com/produce/fruit/apples``.
+
+* ``url_start_with('produce')`` will return **true** on
+
+	* ``http://wolfsite.com/produce``, and on
+	* ``http://wolfsite.com/produce/fruit``, and on
+	* ``http://wolfsite.com/produce/fruit/apples``.
+
+* ``url_start_with('produce/fruit')`` will return
+
+	* “false” on ``http://wolfsite.com/produce``, but
+	* “true” on ``http://wolfsite.com/produce/fruit``, and on
+	* ``http://wolfsite.com/produce/fruit/apples``.
+
+* ``url_start_with('fruit')`` will only return “false”.
+
+Usage
++++++
+
+This could be a useful function for using specific banner images in different sections of a website. For example, if there is a JPG image which correspsonds to the each top-level page in the site (like “produce”, above), it could be included this way:
+
+.. code-block:: php
+
+	//find the top-level page slug, and save it to a variable, e.g. $topSlug, then
+	<img src="<?php echo (url_start_with($topSlug)) ? $topSlug : 'default'; ?>.jpg" />
+
+This banner would then be used for all the child-pages (e.g. “fruit” and “apples” in the example above) for that top page. 
+
+See also: :ref:`url_match()` function.
+
+.. _urlById():
+
+urlById()
+---------
+
+This function makes it possible always to produce a correct and current url to the page despite it possibly having moved from its original position in the page hierarchy. It does this by using the page's :ref:`id()`.
+
+Usage
++++++
+
+.. code-block:: php
+
+	<?php echo Page::urlById(3); ?>
+
+where “3” in the example above is the “id” of the targetted page. It will produce the corresponding URL, e.g. ``http://www.example.com/about_us``
+
+To find out what the ID of a given page is, either look on the “metadata” tab, or hover above the page's title or icon in the main admin page listing, where the ID will appear as a tooltip.
+
+Using a variable for the ID
+```````````````````````````
+
+Using a simple variable for the ID will not pass the filter test set by the ``urlById()`` function. In other words, something like this:
+
+.. code-block:: php
+
+	<?php echo Page::urlById($article->id()); ?>
+
+will throw an error. It is possible to set the ID number dynamically, but it requires an extra step, wrapping the variable for the ID in with the PHP `intval()<http://php.net/manual/en/function.intval.php>` function, like this:
+
+.. code-block:: php
+	
+	<?php
+		$articleId = intval($article->id());
+		echo Page::urlById($articleId);
+	?>
+
+With this in place, the ``urlById()`` function will work as expected.
