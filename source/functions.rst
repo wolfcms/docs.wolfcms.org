@@ -1182,9 +1182,7 @@ The ``url()`` function gives access to the URL of the current page. It does not 
 
 	<?php echo $this->url(); ?>
 
-returns the value:
-
-``http://mywolfsite.com/articles ``
+returns the value: ``http://mywolfsite.com/articles``
 
 See also :ref:`urlById()` function
 
@@ -1313,7 +1311,7 @@ Using a simple variable for the ID will not pass the filter test set by the ``ur
 
 	<?php echo Page::urlById($article->id()); ?>
 
-will throw an error. It is possible to set the ID number dynamically, but it requires an extra step, wrapping the variable for the ID in with the PHP `intval()<http://php.net/manual/en/function.intval.php>` function, like this:
+will throw an error. It is possible to set the ID number dynamically, but it requires an extra step, wrapping the variable for the ID in with the PHP `intval() <http://php.net/manual/en/function.intval.php>`_ function, like this:
 
 .. code-block:: php
 	
