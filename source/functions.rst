@@ -1118,9 +1118,9 @@ That can be summarized in a table as follows:
      - currently displayed page
    * - Body of page
      - that specific page **only**
-   * - Page-part (tab) 	
+   * - Page-part (tab)
      - the owning page **only**
-   * - Snippet 	
+   * - Snippet
      - as above, depending on where snippet is called
 
 
