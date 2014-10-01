@@ -1106,22 +1106,16 @@ Properly speaking, this is not a “Wolf” function at all. PHP uses a special 
 	
 * in a Snippet, ``$this->`` will behave as outlined above, depending on whether you call the snippet in your layout, in the body of a page, or in a page-part.
 
-That can be summarized in a table as follows: 
+That can be summarized in a table as follows:
 
-.. list-table:: Behaviour summary
-   :widths: 40 60
-   
-   * - If ``$this->`` appears in...
-     - ...then ``$this->`` points to::
-   * - Layout
-     - currently displayed page
-   * - Body of page
-     - that specific page **only**
-   * - Page-part (tab)
-     - the owning page **only**
-   * - Snippet
-     - as above, depending on where snippet is called
+.. list-table:: Behaviour summary:
+   :header-rows: 1
+   :widths: 15 40
 
+   *  -  If this appears in...
+      -  ...then this points to:
+   *  -  x
+      -  y
 
      .. _title():
 
