@@ -1108,7 +1108,7 @@ Properly speaking, this is not a “Wolf” function at all. PHP uses a special 
 
 That can be summarized in a table as follows: 
 
-.. list-table::
+.. list-table:: Behaviour of $this->
    :widths: 40 60
    :header-rows: 1
    
