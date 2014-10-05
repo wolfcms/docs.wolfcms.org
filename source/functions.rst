@@ -1240,7 +1240,7 @@ A useful example is found in the default “header” snippet that is created wh
 	
 This hard-sets the “Home” link in the navigation; the ``url_match()`` function provides the test for whether the homepage is current, and echoes the ``class="current"`` for styling the anchor if the test is successful.
 
-.. note:: All elements of the URI must be matched for **true** to be returned. For example, with the URL ``http://wolfsite.com/page/child-page``, the test ``url_match('child-page')`` will return false, but ``url_match(page/child-page)`` will return true. 
+.. note:: All elements of the URI must be matched for **true** to be returned. For example, with the URL ``http://wolfsite.com/page/child-page``, the test ``url_match('child-page')`` will return false, but ``url_match('page/child-page')`` will return true. 
 
 See also: :ref:`url_start_with()` function.
 
