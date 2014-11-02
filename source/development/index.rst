@@ -3,4 +3,10 @@
 Development
 ===========
 
-Some test content
+.. toctree::
+    :maxdepth: 2
+    :glob:
+
+    observersystem
+    functions
+    helpers
