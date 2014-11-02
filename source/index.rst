@@ -7,28 +7,28 @@ Welcome to Wolf CMS's documentation!
 ====================================
 
 .. image:: ../images/wolfcms.gif
-   :alt: WolfCMS logo
+    :align: center
+    :alt: WolfCMS logo
 
 Contents:
 
 .. toctree::
     :maxdepth: 2
+    :glob:
 
     introduction
     requirements
     installation
     configuration
-    development
-    functions
-    helpers
-    userguide
+    userguide/index
+    development/index
     faq
     contributing
     glossary
     styleguide
 
 Indices and tables
-==================
+------------------
 
 * :ref:`genindex`
 * :ref:`modindex`

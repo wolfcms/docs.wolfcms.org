@@ -1,17 +1,14 @@
-.. _development:
-
-Development
-===========
+.. _observersystem:
 
 The Observer System
--------------------
+===================
 
 Like many applications, Wolf CMS has an event/observer system. We call it the
 observer system because Observers watch for events. Most usually, the observers
 are used by plugins but they can be found in other parts of the Wolf CMS system.
 
 Watching for events
-```````````````````
+-------------------
 
 In order to watch for an event and subsequently initiate some action, you first
 tell the Observer system you want to observe an event, then you write a handler
@@ -31,7 +28,7 @@ receive events of the type ``page_edit_after_save`` and that the function that
 should handle these types of events is called ``my_simple_observer``.
 
 Generating an event
-```````````````````
+-------------------
 
 Not only can you observe events that are generated, you can of course also
 generate events yourself.
@@ -46,7 +43,7 @@ variable that is passed to the handling function. This variable can contain just
 about anything you want, from a simple string to an array of complex objects.
 
 Using Observers to customize Page form
-``````````````````````````````````````
+--------------------------------------
 
 Observer events in the Page editing form allow you to include custom inputs or
 dialogs to save data that is not part of the page model. The following diagram
@@ -56,7 +53,7 @@ applied within the form.
 .. note:: TODO - Add diagram
 
 Overview of Observer events
-```````````````````````````
+---------------------------
 
 The Wolf CMS Observer system has a number of events which will continue to
 expand in the future. The following is a list of events with their parameters:
@@ -97,7 +94,7 @@ expand in the future. The following is a list of events with their parameters:
   Observer::notify('page_found', $page);
   Observer::notify('page_not_found', $uri); // $uri parameter as of 0.8.0
   Observer::notify('page_requested', $uri);
-  
+
   Observer::notify('part_add_before_save', $part); // Since 0.7.0
   Observer::notify('part_add_after_save', $part); // Since 0.7.0
   Observer::notify('part_edit_after_save', $part); // Since 0.7.0
@@ -124,4 +121,3 @@ expand in the future. The following is a list of events with their parameters:
   Observer::notify('view_page_edit_popup', $page);
   Observer::notify('view_page_edit_tabs', $page);
   Observer::notify('view_page_after_edit_tabs', $page);
-
