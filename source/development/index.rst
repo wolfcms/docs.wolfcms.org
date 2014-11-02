@@ -7,6 +7,6 @@ Development
     :maxdepth: 2
     :glob:
 
-    observer
+    observersystem
     functions
     helpers
