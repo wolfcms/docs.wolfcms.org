@@ -5,7 +5,7 @@ Development
 
 .. toctree::
     :maxdepth: 2
-    :glob:
+    :hidden:
 
     observersystem
     functions
