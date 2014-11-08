@@ -1,0 +1,28 @@
+site_name  : Wolf CMS documentation
+site_url   : https://docs.wolfcms.org
+site_author: The Wolf CMS team
+
+repo_url: https://github.com/wolfcms/docs.wolfcms.org
+
+theme: flatly
+
+extra_css: ['themes/wolfcms/extra-css.css']
+extra_javascript: ['themes/wolfcms/extra-javascript.js']
+
+include_search: false
+
+pages:
+    - ['index.md', 'Introduction']
+    - ['getting-started/requirements.md', 'Getting started', 'Requirements']
+    - ['getting-started/installation.md', 'Getting started', 'Installation']
+    - ['getting-started/configuration.md', 'Getting started', 'Configuration']
+    - ['admin-guide/rewrite.md', 'Admin guide', 'Clean URLs']
+    - ['development/observer-system.md', 'Development', 'The Observer System']
+    - ['development/helpers.md', 'Development', 'Helpers']
+    - ['development/functions.md', 'Development', 'Functions']
+    - ['development/constants.md', 'Development', 'Constants']
+    - ['faq.md', 'About', 'FAQ']
+    - ['glossary.md', 'About', 'Glossary']
+    - ['styleguide.md', 'About', 'Styleguide']
+
+markdown_extensions: [abbr,attr_list,def_list,footnotes,tables,admonition,nl2br,toc]
