@@ -9,8 +9,6 @@ theme: flatly
 extra_css: ['themes/wolfcms/extra-css.css']
 extra_javascript: ['themes/wolfcms/extra-javascript.js']
 
-include_search: false
-
 pages:
     - ['index.md', 'Introduction']
     - ['getting-started/requirements.md', 'Getting started', 'Requirements']
