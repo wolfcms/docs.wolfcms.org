@@ -1,26 +1,30 @@
 site_name  : Wolf CMS documentation
 site_url   : https://docs.wolfcms.org
 site_author: The Wolf CMS team
+copyright: Copyright 2015, Wolf CMS project.
 
 repo_url: https://github.com/wolfcms/docs.wolfcms.org
 
-theme: flatly
+theme: readthedocs
 
-extra_css: ['themes/wolfcms/extra-css.css']
-extra_javascript: ['themes/wolfcms/extra-javascript.js']
+strict: true
 
 pages:
-    - ['index.md', 'Introduction']
-    - ['getting-started/requirements.md', 'Getting started', 'Requirements']
-    - ['getting-started/installation.md', 'Getting started', 'Installation']
-    - ['getting-started/configuration.md', 'Getting started', 'Configuration']
-    - ['admin-guide/rewrite.md', 'Admin guide', 'Clean URLs']
-    - ['development/observer-system.md', 'Development', 'The Observer System']
-    - ['development/helpers.md', 'Development', 'Helpers']
-    - ['development/functions.md', 'Development', 'Functions']
-    - ['development/constants.md', 'Development', 'Constants']
-    - ['faq.md', 'About', 'FAQ']
-    - ['glossary.md', 'About', 'Glossary']
-    - ['styleguide.md', 'About', 'Styleguide']
+    - Introduction: 'index.md'
+    - Getting started:
+        - Requirements: 'getting-started/requirements.md'
+        - Installation: 'getting-started/installation.md'
+        - Configuration: 'getting-started/configuration.md'
+    - Admin guide:
+        - Clean URLs: 'admin-guide/rewrite.md'
+    - Development:
+        - The Observer System: 'development/observer-system.md'
+        - Helpers: 'development/helpers.md'
+        - Functions: 'development/functions.md'
+        - Constants: 'development/constants.md'
+    - About:
+        - FAQ: 'faq.md'
+        - Glossary: 'glossary.md'
+        - Styleguide: 'styleguide.md'
 
 markdown_extensions: [abbr,attr_list,def_list,footnotes,tables,admonition,nl2br,toc]
