@@ -10,3 +10,5 @@ GitHub repository. If you don't know how to make these changes, we still want to
 When you submit a pull request with changes, please adhere to our [style guide](https://docs.wolfcms.org/styleguide/) since this allows us to more quickly process your pull request.
 
 All of the documentation on [docs.wolfcms.org](http://docs.wolfcms.org) is written in Markdown using the most excellent [MkDocs](http://www.mkdocs.org) system.
+
+Mirroed at [wolf-cms.readthedocs.io](https://wolf-cms.readthedocs.io/en/latest/)
