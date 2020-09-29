@@ -11,4 +11,4 @@ When you submit a pull request with changes, please adhere to our [style guide](
 
 All of the documentation on [docs.wolfcms.org](http://docs.wolfcms.org) is written in Markdown using the most excellent [MkDocs](http://www.mkdocs.org) system.
 
-Mirroed at [wolf-cms.readthedocs.io](https://wolf-cms.readthedocs.io/en/latest/)
+Mirrored at [wolf-cms.readthedocs.io](https://wolf-cms.readthedocs.io/en/latest/)
